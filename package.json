@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-base",
-  "description": "Provides LINQ-like fluent api operations for iterables and async iterables (ES2018+).",
+  "description": "This project is just a template for creation of new projects",
   "version": "0.0.0",
   "private": true,
   "author": {
