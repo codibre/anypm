@@ -1,6 +1,6 @@
-[fluent-iterable - v0.0.0](README.md)
+[fluent-iterable - v0.0.1](README.md)
 
-# fluent-iterable - v0.0.0
+# fluent-iterable - v0.0.1
 
 ## Index
 
