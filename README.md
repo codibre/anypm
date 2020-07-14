@@ -6,7 +6,7 @@
 [![Packages](https://david-dm.org/Codibre/boilerplate-base.svg)](https://david-dm.org/Codibre/boilerplate-base)
 [![npm version](https://badge.fury.io/js/%40codibre%2Fboilerplate-base.svg)](https://badge.fury.io/js/%40codibre%2Fboilerplate-base)
 
-Never forget to write you readme! Also! don't forget to add codeclimate key to your github environment variables and to update the url here with the one provided by them!
+Never forget to write your readme! Also, don't forget to add codeclimate key to your github environment variables (as **CC_TEST_REPORTER_ID**) and to update the url here with the one provided by them!
 
 ## License
 
