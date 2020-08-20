@@ -78,6 +78,7 @@
     "semantic-release": "^17.1.1"
   },
   "dependencies": {
+    "@semantic-release/changelog": "github:semantic-release/changelog",
     "semantic-release": "^17.1.1"
   }
 }
