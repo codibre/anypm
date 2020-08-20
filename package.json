@@ -1,7 +1,7 @@
 {
   "name": "boilerplate-base",
   "description": "This project is just a template for creation of new projects",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "private": true,
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
@@ -35,11 +35,12 @@
     "lint:format": "prettier --check '{src,test}/**/*.ts'",
     "lint:format:fix": "prettier --write '{src,test}/**/*.ts'",
     "lint:style": "eslint '**/*.ts'",
-    "lint:style:fix": "eslint '**/*.ts' --fix"
+    "lint:style:fix": "eslint '**/*.ts' --fix",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codibre/boilerplate-base.git"
+    "url": "https://github.com/codibre/boilerplate-base.git"
   },
   "homepage": "https://github.com/codibre/boilerplate-base#readme",
   "bugs": {
@@ -73,6 +74,10 @@
     "tslint": "^6.1.2",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.3.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "semantic-release": "^17.1.1"
+  },
+  "dependencies": {
+    "semantic-release": "^17.1.1"
   }
 }
