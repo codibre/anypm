@@ -28,7 +28,3 @@ jobs:
         with:
           coverageCommand: npm run test:coverage
           coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
-      - name: semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
-        run: npx semantic-release  
