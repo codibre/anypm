@@ -47,32 +47,15 @@
     "url": "https://github.com/codibre/boilerplate-base/issues"
   },
   "release": {
-    "branch": "master",
-    "githubPublish": false,
     "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogTitle": "Boilerplate Changelog",
-          "changelogFile": "./CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
-  },
+     "@semantic-release/commit-analyzer",
+     "@semantic-release/release-notes-generator",
+    ["@semantic-release/npm",{"npmPublish":false}],
+     "@semantic-release/changelog",
+     "@semantic-release/git"
+   ],
+   "branch": "master"
+ },
   "keywords": [],
   "license": "MIT",
   "devDependencies": {
