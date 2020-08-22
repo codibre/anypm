@@ -46,21 +46,6 @@
   "bugs": {
     "url": "https://github.com/codibre/boilerplate-base/issues"
   },
-  "release": {
-    "plugins": [
-     "@semantic-release/commit-analyzer",
-     "@semantic-release/release-notes-generator",
-    ["@semantic-release/npm",{"npmPublish":true}],
-    [
-      "@semantic-release/changelog",
-      {
-        "changelogTitle": "boilerPlate Release Sample"
-      }
-    ],
-     "@semantic-release/git"
-   ],
-   "branch": "master"
- },
   "keywords": [],
   "license": "MIT",
   "devDependencies": {
