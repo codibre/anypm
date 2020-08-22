@@ -7,5 +7,5 @@
     "@semantic-release/git",
     ["@semantic-release/npm",{"npmPublish":false}]
   ],
-  "dryRun": true
+  "dryRun": false
 }
