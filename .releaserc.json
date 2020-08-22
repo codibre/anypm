@@ -1,0 +1,7 @@
+{
+  "branch": "master",
+  "plugins": [
+    "@semantic-release/changelog"
+  ],
+  "dryRun": true
+}
