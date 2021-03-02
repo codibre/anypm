@@ -1,9 +1,23 @@
 {
-  "extends": "@codibre/confs/tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importsNotUsedAsValues":"remove",
+    "target": "es2018",
+    "sourceMap": true,
     "outDir": "./dist",
-    "declaration": true
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
   },
-  "include": ["./src"]
+  "include": ["./src", "./test"]
 }
