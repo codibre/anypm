@@ -1,4 +1,5 @@
 
+* a682f60 prepaing release
 * 75ae148 merging master
 * 1201ff3 Merge branch 'master' of github.com:Codibre/anypm
 * 09c1603 fixing lint
