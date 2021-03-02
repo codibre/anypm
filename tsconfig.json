@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "baseUrl": ".",
     "strict": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -18,6 +18,5 @@
     "alwaysStrict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-  },
-  "include": ["./src", "./test"]
+  }
 }

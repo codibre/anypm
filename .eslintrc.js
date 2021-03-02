@@ -15,7 +15,7 @@ module.exports = {
   ignorePatterns: ['dist/**', 'build/**', 'bin/**', 'templates/**', '*.py', ".eslintrc.js"],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['tsconfig.json', 'tsconfig.test.json'],
+    project: ['tsconfig.json'],
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'unused-imports'],

@@ -21,13 +21,6 @@
       "type": "shell",
       "command": "rm -rf ${workspaceRoot}/.ts-test",
       "group": "build"
-    },
-    {
-      "label": "tsc:test:build",
-      "type": "shell",
-      "command": "${workspaceRoot}/node_modules/.bin/tsc -b ${workspaceRoot}/tsconfig.test.json",
-      "problemMatcher": ["$tsc"],
-      "group": "build"
     }
   ]
 }
