@@ -14,7 +14,10 @@ At first, the compatibility is made between pnpm and npm, where npm will be the 
 
 ```
 npm -g anypm
+npm -g pnpm
 ```
+
+As you see, you need to install pnpm along with it, or the run will fail!
 
 # How to use it
 
