@@ -1,4 +1,7 @@
 
+* ec1cfed fixing @types for scoped packages
+* a86eaf4 preparing publishing
+* d17cf63 disabling doc for now
 * a682f60 prepaing release
 * 75ae148 merging master
 * 1201ff3 Merge branch 'master' of github.com:Codibre/anypm
