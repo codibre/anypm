@@ -4,7 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/65e41e3018643f28168e/test_coverage)](https://codeclimate.com/github/Codibre/anypm/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/65e41e3018643f28168e/maintainability)](https://codeclimate.com/github/Codibre/anypm/maintainability)
 [![Packages](https://david-dm.org/Codibre/anypm.svg)](https://david-dm.org/Codibre/anypm)
-[![npm version](https://badge.fury.io/js/%40codibre%2Fanypm.svg)](https://badge.fury.io/js/anypm)
+[![npm version](https://badge.fury.io/js/anypm.svg)](https://badge.fury.io/js/anypm)
 
 This project aims to use a package manager of your preference locally without the need to change the CI configuration of your project to use this same manager.
 
