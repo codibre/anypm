@@ -8,7 +8,40 @@
 
 This project aims to use a package name of your preference locally without the need to change the CI configuration of your project to use this same package.
 
-At first, the compatibiliation is made between pnpm and npm, where npm will be the cloud package and pnpm used local. This itself already offer much less space and internet consumed for you, my fellow developer! And if your fellow developer doesn't want to use pnpm, that's okay! He can stick with npm and everyone will be happy!
+At first, the compatibiliation is made between pnpm and npm, where npm will be the cloud package and pnpm used local. This itself already offer much less space and internet consumed for you, my fellow developer! And if your fellow developer doesn't want to use pnpm, that's okay! He can stick with npm and everyone will be happy!o use
+
+# How to install
+
+```
+npm -g anypm
+```
+
+# How to use it
+
+To execute "npm install" equivalent, with no packages:
+
+```
+anypm install
+anypm i
+```
+
+To install one or more packages (if the package have a valid @types, it is installed too)
+```
+anypm install express moment
+anypm u express moment
+```
+
+To install dev dependencies
+```
+anypm install --save-dev jest
+anypm i -D jest
+```
+
+To uninstall:
+```
+anypm uninstall express
+anypm un express
+```
 
 ## License
 

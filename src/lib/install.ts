@@ -1,5 +1,5 @@
 import { runScript } from './exec';
-import { packageExists } from './package-exists';
+import { getTypes } from './get-types';
 
 interface InstallOptions {
 	keepLock: boolean;
@@ -25,19 +25,7 @@ export async function install(packages: string[], options: InstallOptions) {
 			? mountAdd(options.saveDev, packages)
 			: ['pnpm', ['install']];
 
-		const types = (
-			await Promise.all(
-				packages.map(async (pkg) => {
-					if (!pkg.startsWith('@types')) {
-						const typePackage = `@types/${pkg}`;
-						if (await packageExists(typePackage)) {
-							return typePackage;
-						}
-					}
-					return undefined;
-				}),
-			)
-		).filter((x) => x) as string[];
+		const types = await getTypes(packages);
 
 		if (types.length > 0) {
 			yield mountAdd(true, types);
