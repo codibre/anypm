@@ -7,11 +7,11 @@ interface InstallOptions {
 }
 
 function mountAdd(saveDev: boolean, packages: string[]): [string, string[]] {
-  const args = ['add'];
-  if (saveDev) {
-    args.push('-D');
-  }
-  args.push(...packages);
+	const args = ['add'];
+	if (saveDev) {
+		args.push('-D');
+	}
+	args.push(...packages);
 	return ['pnpm', args];
 }
 
