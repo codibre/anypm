@@ -7,5 +7,5 @@ use(sinonChai);
 use(callsLike);
 
 beforeEach(() => {
-  restore();
+	restore();
 });
