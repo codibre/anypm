@@ -6,16 +6,16 @@ interface InstallOptions {
 	saveDev: boolean;
 }
 
-function mountRemove(packages: string[]) {
-	return `pnpm remove ${packages.join(' ')}`;
+function mountRemove(packages: string[]): [string, string[]] {
+	return ['pnpm', ['remove', ...packages]];
 }
 
 export async function uninstall(packages: string[], options: InstallOptions) {
 	if (packages.length === 0) {
 		throw new Error('You need to inform packages for uninstalling, champs!');
 	}
-	return runScript(async function* () {
-		yield 'pnpm import';
+	return runScript(async function* (): AsyncIterable<[string, string[]]> {
+		yield ['pnpm', ['import']];
 		yield mountRemove(packages);
 
 		const types = (
@@ -37,9 +37,9 @@ export async function uninstall(packages: string[], options: InstallOptions) {
 		}
 
 		if (!options.keepLock) {
-			yield 'rm -rf pnpm-lock.yaml';
+			yield ['rm', ['-rf', 'pnpm-lock.yaml']];
 		}
 
-		yield 'npm install --package-lock-only';
+		yield ['npm', ['install', '--package-lock-only']];
 	});
 }

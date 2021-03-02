@@ -6,19 +6,24 @@ interface InstallOptions {
 	saveDev: boolean;
 }
 
-function mountAdd(saveDev: boolean, packages: string[]) {
-	return `pnpm add ${saveDev ? '-D' : ''} ${packages.join(' ')}`;
+function mountAdd(saveDev: boolean, packages: string[]): [string, string[]] {
+  const args = ['add'];
+  if (saveDev) {
+    args.push('-D');
+  }
+  args.push(...packages);
+	return ['pnpm', args];
 }
 
 export async function install(packages: string[], options: InstallOptions) {
-	return runScript(async function* () {
+	return runScript(async function* (): AsyncIterable<[string, string[]]> {
 		if (packages.length === 0 || options.keepLock) {
-			yield 'pnpm import';
+			yield ['pnpm', ['import']];
 		}
 
 		yield packages.length > 0
 			? mountAdd(options.saveDev, packages)
-			: 'pnpm install';
+			: ['pnpm', ['install']];
 
 		const types = (
 			await Promise.all(
@@ -39,9 +44,9 @@ export async function install(packages: string[], options: InstallOptions) {
 		}
 
 		if (!options.keepLock) {
-			yield 'rm -rf pnpm-lock.yaml';
+			yield ['rm', ['-rf', 'pnpm-lock.yaml']];
 		}
 
-		yield 'npm install --package-lock-only';
+		yield ['npm', ['install', '--package-lock-only']];
 	});
 }
