@@ -1,5 +1,8 @@
 
-## 0.1.0
+## 0.1.1
+* 8b5a4a8 fixing readme
+## v0.1.0
+* fb89ee8 0.1.0
 * e6c6a26 making it work without pnpm installed too
 ## v0.0.7
 * 49c5185 0.0.7
