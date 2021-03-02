@@ -1,5 +1,9 @@
 
-## 0.0.6
+## 0.0.7
+* 561407a updating readme
+* deda012 updating readme
+## v0.0.6
+* d250756 0.0.6
 * 7a23957 fixing bin
 ## v0.0.5
 * 4315938 0.0.5
