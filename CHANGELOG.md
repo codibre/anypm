@@ -1,10 +1,12 @@
 
-## 0.0.3
+## 0.0.4
+* 33b0602 fixing readme
 * b96ba65 Merge branch 'master' of github.com:Codibre/anypm
 * 428de54 fixing readme
 * c266064 chore(release): 1.0.0 [skip ci]
 * 4d38df4 Merge branch 'master' of github.com:Codibre/anypm
 * fd21f3e chore(release): 1.0.0 [skip ci]
+## v0.0.3
 * 84e41ab 0.0.3
 * ec1cfed fixing @types for scoped packages
 * a86eaf4 preparing publishing
