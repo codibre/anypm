@@ -1,5 +1,8 @@
 
-## 0.0.5
+## 0.0.6
+* 7a23957 fixing bin
+## v0.0.5
+* 4315938 0.0.5
 * ed5f704 adding faulting bin property
 ## v0.0.4
 * 0d220e0 0.0.4
