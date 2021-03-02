@@ -65,7 +65,7 @@
   "bugs": {
     "url": "https://github.com/codibre/anypm/issues"
   },
-  "keywords": [],
+  "keywords": ["npm", "pnpm", "package manager", "package", "manager"],
   "license": "MIT",
   "devDependencies": {
     "@semantic-release/changelog": "github:semantic-release/changelog",
