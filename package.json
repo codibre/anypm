@@ -95,5 +95,8 @@
   "dependencies": {
     "commander": "^7.1.0",
     "npm-api": "^1.0.1"
+  },
+  "bin": {
+    "codibre-confs": "dist/index.js"
   }
 }
