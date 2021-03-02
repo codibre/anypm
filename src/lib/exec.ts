@@ -1,12 +1,21 @@
 import { exec } from 'child_process';
-import { promisify } from 'util';
-
-export const runCommand = (promisify(exec) as unknown) as (
-	command: string,
-) => Promise<string>;
 
 export async function runScript(commands: () => AsyncIterable<string>) {
 	for await (const command of commands()) {
-		await runCommand(command);
+		await new Promise<void>((resolve, reject) => {
+      exec(command, (err, stdout, stderr) => {
+        if (stdout) {
+          console.info(stdout);
+        }
+        if (stdout) {
+          console.error(stderr);
+        }
+        if (err) {
+          resolve();
+        } else {
+          reject(err);
+        }
+      });
+    });
 	}
 }
