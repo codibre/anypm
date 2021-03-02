@@ -1,5 +1,8 @@
 
-## 0.0.4
+## 0.0.5
+* ed5f704 adding faulting bin property
+## v0.0.4
+* 0d220e0 0.0.4
 * 33b0602 fixing readme
 * b96ba65 Merge branch 'master' of github.com:Codibre/anypm
 * 428de54 fixing readme
