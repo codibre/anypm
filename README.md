@@ -1,8 +1,8 @@
 [![Actions Status](https://github.com/Codibre/anypm/workflows/build/badge.svg)](https://github.com/Codibre/anypm/actions)
 [![Actions Status](https://github.com/Codibre/anypm/workflows/test/badge.svg)](https://github.com/Codibre/anypm/actions)
 [![Actions Status](https://github.com/Codibre/anypm/workflows/lint/badge.svg)](https://github.com/Codibre/anypm/actions)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/65e41e3018643f28168e/test_coverage)](https://codeclimate.com/github/Codibre/anypm/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/65e41e3018643f28168e/maintainability)](https://codeclimate.com/github/Codibre/anypm/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9cc84f52db78a270d30c/test_coverage)](https://codeclimate.com/github/Codibre/anypm/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9cc84f52db78a270d30c/maintainability)](https://codeclimate.com/github/Codibre/anypm/maintainability)
 [![Packages](https://david-dm.org/Codibre/anypm.svg)](https://david-dm.org/Codibre/anypm)
 [![npm version](https://badge.fury.io/js/anypm.svg)](https://badge.fury.io/js/anypm)
 
