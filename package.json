@@ -2,7 +2,6 @@
   "name": "anypm",
   "description": "This project is just a template for creation of new projects",
   "version": "0.0.2",
-  "private": true,
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },
