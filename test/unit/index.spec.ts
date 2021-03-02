@@ -1,4 +1,4 @@
-import { expectCallsLike } from './setup';
+import './setup';
 
 describe('index.ts', () => {
 	afterEach(() => {
@@ -12,6 +12,6 @@ describe('index.ts', () => {
 	it('should start things', () => {
 		require('../../src/index');
 
-		expectCallsLike(process.exit, [0]);
+		expect(process.exit).toBeCalled();
 	});
 });
