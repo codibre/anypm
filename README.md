@@ -16,7 +16,7 @@ At first, the compatibility is made between pnpm and npm, where npm will be the 
 npm -g anypm pnpm
 ```
 
-As you see, you need to install pnpm along with it, or the run will fail!
+As you see, you need to install pnpm along with it, otherwise anypm will just use npm locally too!
 
 # How to use it
 

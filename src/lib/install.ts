@@ -1,40 +1,43 @@
 import { runScript } from './exec';
 import { getTypes } from './get-types';
+import { getCommand } from './get-command';
+import { CommandInfo } from './command-info';
+import { manageLocks } from './manage-locks';
+import { prepareManager } from './prepare-manager';
 
 interface InstallOptions {
 	keepLock: boolean;
 	saveDev: boolean;
 }
 
-function mountAdd(saveDev: boolean, packages: string[]): [string, string[]] {
-	const args = ['add'];
+function mountInstall(
+	command: string,
+	saveDev: boolean,
+	packages: string[],
+): CommandInfo {
+	const args = ['install'];
 	if (saveDev) {
 		args.push('-D');
 	}
 	args.push(...packages);
-	return ['pnpm', args];
+	return [command, args];
 }
 
 export async function install(packages: string[], options: InstallOptions) {
+	const { hasPNPM, command } = await getCommand();
 	return runScript(async function* (): AsyncIterable<[string, string[]]> {
 		if (packages.length === 0 || options.keepLock) {
-			yield ['pnpm', ['import']];
+			yield* prepareManager(hasPNPM);
 		}
 
-		yield packages.length > 0
-			? mountAdd(options.saveDev, packages)
-			: ['pnpm', ['install']];
+		yield mountInstall(command, options.saveDev, packages);
 
 		const types = await getTypes(packages);
 
 		if (types.length > 0) {
-			yield mountAdd(true, types);
+			yield mountInstall(command, true, types);
 		}
 
-		if (!options.keepLock) {
-			yield ['rm', ['-rf', 'pnpm-lock.yaml']];
-		}
-
-		yield ['npm', ['install', '--package-lock-only']];
+		yield* manageLocks(hasPNPM, options);
 	});
 }
