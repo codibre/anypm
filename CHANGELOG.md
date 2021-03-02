@@ -1,5 +1,11 @@
 
-## 0.1.2
+## 0.1.3
+* fa133fb adding keywords
+* f0e7c75 fixing test
+* cb9ddda removing unused file
+* 26ddbb6 fixing codeclimate badges
+## v0.1.2
+* 63bbda5 0.1.2
 * d61f652 fixing readme
 ## v0.1.1
 * 1933a30 0.1.1

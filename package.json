@@ -1,7 +1,7 @@
 {
   "name": "anypm",
   "description": "Use your favorite package manager locally and let npm be used by your CI!",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },
@@ -65,7 +65,13 @@
   "bugs": {
     "url": "https://github.com/codibre/anypm/issues"
   },
-  "keywords": ["npm", "pnpm", "package manager", "package", "manager"],
+  "keywords": [
+    "npm",
+    "pnpm",
+    "package manager",
+    "package",
+    "manager"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@semantic-release/changelog": "github:semantic-release/changelog",
