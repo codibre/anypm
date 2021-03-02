@@ -1,5 +1,8 @@
 
-## 0.0.7
+## 0.1.0
+* e6c6a26 making it work without pnpm installed too
+## v0.0.7
+* 49c5185 0.0.7
 * 561407a updating readme
 * deda012 updating readme
 ## v0.0.6
