@@ -1,4 +1,7 @@
-import { promisify } from 'util';
 import which = require('which');
 
-export const commandExists = promisify(which);
+export async function commandExists(command: string) {
+	return new Promise<boolean>((resolve) =>
+		which(command, (err) => resolve(!err)),
+	);
+}

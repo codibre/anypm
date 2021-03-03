@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import { install } from './lib/install';
+import { runScriptFactory } from './lib/run-script-factory';
 import { uninstall } from './lib/uninstall';
 
 program
@@ -14,7 +15,7 @@ program
 	.description(
 		'Install the informed packages or follows the package.json if no package is informed using your favorite package manager',
 	)
-	.action(install);
+	.action(runScriptFactory(install));
 program
 	.command('uninstall <packages...>')
 	.option(
@@ -23,7 +24,7 @@ program
 	)
 	.alias('un')
 	.description('Removes the package from your project')
-	.action(uninstall);
+	.action(runScriptFactory(uninstall));
 program
 	.command('help', { isDefault: true })
 	.description('show help information')

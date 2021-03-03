@@ -1,43 +1,31 @@
-import { runScript } from './exec';
 import { getTypes } from './get-types';
 import { getCommand } from './get-command';
-import { CommandInfo } from './command-info';
 import { manageLocks } from './manage-locks';
 import { prepareManager } from './prepare-manager';
+import { mountNpmCommand } from './mount-npm-command';
 
 interface InstallOptions {
 	keepLock: boolean;
 	saveDev: boolean;
 }
 
-function mountInstall(
-	command: string,
-	saveDev: boolean,
-	packages: string[],
-): CommandInfo {
-	const args = ['install'];
-	if (saveDev) {
-		args.push('-D');
-	}
-	args.push(...packages);
-	return [command, args];
-}
+const ARG0 = 'install';
 
-export async function install(packages: string[], options: InstallOptions) {
+export async function* install(packages: string[], options: InstallOptions) {
 	const { hasPNPM, command } = await getCommand();
-	return runScript(async function* (): AsyncIterable<[string, string[]]> {
-		if (packages.length === 0 || options.keepLock) {
-			yield* prepareManager(hasPNPM);
-		}
+	if (packages.length === 0 || options.keepLock) {
+		yield* prepareManager(hasPNPM);
+	}
 
-		yield mountInstall(command, options.saveDev, packages);
+	yield mountNpmCommand(command, ARG0, packages, options.saveDev);
 
+	if (packages.length > 0) {
 		const types = await getTypes(packages);
 
 		if (types.length > 0) {
-			yield mountInstall(command, true, types);
+			yield mountNpmCommand(command, ARG0, types, true);
 		}
+	}
 
-		yield* manageLocks(hasPNPM, options);
-	});
+	yield* manageLocks(hasPNPM, options);
 }

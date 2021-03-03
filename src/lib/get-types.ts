@@ -1,19 +1,20 @@
 import { packageExists } from './package-exists';
 
 export async function getTypes(packages: string[]) {
-	return (
-		await Promise.all(
-			packages.map(async (pkg) => {
-				if (!pkg.startsWith('@types')) {
-					const typePackage = `@types/${
-						pkg.startsWith('@') ? pkg.substring(1).replace('/', '__') : pkg
-					}`;
-					if (await packageExists(typePackage)) {
-						return typePackage;
-					}
+	function* getPackages() {
+		for (const pkg of packages) {
+			if (!pkg.startsWith('@types')) {
+				const typePackage = `@types/${
+					pkg.startsWith('@') ? pkg.substring(1).replace('/', '__') : pkg
+				}`;
+				if (!packages.includes(typePackage)) {
+					yield packageExists(typePackage).then((x) =>
+						x ? typePackage : undefined,
+					);
 				}
-				return undefined;
-			}),
-		)
-	).filter((x) => x) as string[];
+			}
+		}
+	}
+
+	return (await Promise.all(getPackages())).filter((x) => x) as string[];
 }

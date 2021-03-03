@@ -1,4 +1,6 @@
+import { program } from 'commander';
 import './setup';
+import { expectCallsLike } from './setup';
 
 describe('index.ts', () => {
 	afterEach(() => {
@@ -6,12 +8,21 @@ describe('index.ts', () => {
 	});
 
 	beforeEach(() => {
-		jest.spyOn(process, 'exit').mockReturnValue(undefined as never);
+		jest.spyOn(program, 'command');
+		jest.spyOn(program, 'parse').mockReturnThis();
 	});
 
-	it('should start things', () => {
+	it('should set available commands', () => {
+		process.argv = ['args'];
+
 		require('../../src/index');
 
-		expect(process.exit).toBeCalled();
+		expectCallsLike(
+			program.command,
+			['install [packages...]'],
+			['uninstall <packages...>'],
+			['help', { isDefault: true }],
+		);
+		expectCallsLike(program.parse, [['args']]);
 	});
 });
