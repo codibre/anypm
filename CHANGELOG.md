@@ -1,5 +1,8 @@
 
-## 0.1.3
+## 0.1.4
+* 1e2cc3d completing unit tests and fixing bugs whem pnpm is not installed
+## v0.1.3
+* 00a55b4 0.1.3
 * fa133fb adding keywords
 * f0e7c75 fixing test
 * cb9ddda removing unused file
