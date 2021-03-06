@@ -10,9 +10,10 @@ describe(install.name, () => {
 	const typesPack = ['@types/pack1', '@types/pack2'];
 
 	beforeEach(() => {
-		jest
-			.spyOn(getCommandLib, 'getCommand')
-			.mockResolvedValue({ hasPNPM: 'hasPNPM value' as any, command: 'myNPM' });
+		jest.spyOn(getCommandLib, 'getCommand').mockResolvedValue({
+			hasCommand: 'hasPNPM value' as any,
+			command: 'myNPM',
+		});
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')
 			.mockImplementation((...[a, ...others]: any[]) => [a, others]);

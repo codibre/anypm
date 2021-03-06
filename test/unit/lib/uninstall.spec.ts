@@ -1,4 +1,5 @@
 import { uninstall } from '../../../src/lib/uninstall';
+import * as prepareOptionsLib from '../../../src/lib/prepare-options';
 import * as getCommandLib from '../../../src/lib/get-command';
 import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as prepareManagerLib from '../../../src/lib/prepare-manager';
@@ -11,8 +12,12 @@ describe(uninstall.name, () => {
 
 	beforeEach(() => {
 		jest
-			.spyOn(getCommandLib, 'getCommand')
-			.mockResolvedValue({ hasPNPM: 'hasPNPM value' as any, command: 'myNPM' });
+			.spyOn(prepareOptionsLib, 'prepareOptions')
+			.mockReturnValue('my prepared options' as any);
+		jest.spyOn(getCommandLib, 'getCommand').mockResolvedValue({
+			hasCommand: 'hasPNPM value' as any,
+			command: 'myNPM',
+		});
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')
 			.mockImplementation((...[a, ...others]: any[]) => [a, others]);
@@ -37,6 +42,7 @@ describe(uninstall.name, () => {
 			result.push(item);
 		}
 
+		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
 		expectCallsLike(getTypesLib.getTypes, [packs]);
@@ -45,7 +51,10 @@ describe(uninstall.name, () => {
 			'uninstall',
 			[...packs, ...typesPack],
 		]);
-		expectCallsLike(manageLocksLib.manageLocks, ['hasPNPM value', options]);
+		expectCallsLike(manageLocksLib.manageLocks, [
+			'hasPNPM value',
+			'my prepared options',
+		]);
 		expect(result).toEqual([
 			['prepare', ['command1']],
 			['prepare2', ['command2']],
@@ -66,6 +75,7 @@ describe(uninstall.name, () => {
 			result.push(item);
 		}
 
+		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
 		expectCallsLike(getTypesLib.getTypes, [packs]);
@@ -74,7 +84,10 @@ describe(uninstall.name, () => {
 			'uninstall',
 			packs,
 		]);
-		expectCallsLike(manageLocksLib.manageLocks, ['hasPNPM value', options]);
+		expectCallsLike(manageLocksLib.manageLocks, [
+			'hasPNPM value',
+			'my prepared options',
+		]);
 		expect(result).toEqual([
 			['prepare', ['command1']],
 			['prepare2', ['command2']],

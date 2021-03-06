@@ -1,10 +1,11 @@
 import { commandExists } from './command-exists';
+import { getConfig } from './config';
 
-export const PNPM = 'pnpm';
 export const NPM = 'npm';
 
 export async function getCommand() {
-	const hasPNPM = !!(await commandExists(PNPM));
-	const command = hasPNPM ? PNPM : NPM;
-	return { hasPNPM, command };
+	const config = getConfig();
+	const hasCommand = !!(await commandExists(config.command));
+	const command = hasCommand ? config.command : NPM;
+	return { hasCommand, command };
 }
