@@ -1,5 +1,8 @@
 
-## 0.1.4
+## 0.2.0
+* 6d3a97d implementing anypmrc.json support
+## v0.1.4
+* 9e8b522 0.1.4
 * 1e2cc3d completing unit tests and fixing bugs whem pnpm is not installed
 ## v0.1.3
 * 00a55b4 0.1.3

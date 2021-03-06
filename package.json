@@ -1,7 +1,7 @@
 {
   "name": "anypm",
   "description": "Use your favorite package manager locally and let npm be used by your CI!",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },
@@ -105,5 +105,7 @@
     "npm-api": "^1.0.1",
     "which": "^2.0.2"
   },
-  "bin": "dist/index.js"
+  "bin": {
+    "anypm": "dist/index.js"
+  }
 }
