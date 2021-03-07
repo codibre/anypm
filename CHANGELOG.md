@@ -1,5 +1,11 @@
 
-## 0.2.0
+## 0.2.1
+* 8d033bc fixing npm i with no args when package lock does not exist
+* 078ed92 fixing workflows
+* e75f714 fixing semantic-release import
+* 39a1981 removing wrong github pipes
+## v0.2.0
+* 589a857 0.2.0
 * 6d3a97d implementing anypmrc.json support
 ## v0.1.4
 * 9e8b522 0.1.4
