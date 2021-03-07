@@ -1,7 +1,7 @@
 {
   "name": "anypm",
   "description": "Use your favorite package manager locally and let npm be used by your CI!",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },

@@ -1,5 +1,8 @@
 
-## 0.2.1
+## 0.2.2
+* fc1f149 fixing start without package-lock
+## v0.2.1
+* 6d07ef1 0.2.1
 * 8d033bc fixing npm i with no args when package lock does not exist
 * 078ed92 fixing workflows
 * e75f714 fixing semantic-release import
