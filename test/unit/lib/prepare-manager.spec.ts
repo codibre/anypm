@@ -23,7 +23,11 @@ describe(prepareManager.name, () => {
 		const result = Array.from(prepareManager(true));
 
 		expectCallsLike(existsSync, [packageLockPath]);
-		expect(result).toEqual([]);
+		expect(result).toEqual([
+			['npm', ['i']],
+			['npx', ['del-cli', 'node_modules']],
+			['pnpm', ['import']],
+		]);
 	});
 
 	it('should yield preparing commands when hasPNPM is true', () => {
