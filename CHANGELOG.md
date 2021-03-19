@@ -1,5 +1,8 @@
 
-## 0.2.2
+## 0.2.3
+* 455edcf commenting broken command of pnpm
+## v0.2.2
+* 058b447 0.2.2
 * fc1f149 fixing start without package-lock
 ## v0.2.1
 * 6d07ef1 0.2.1
