@@ -1,5 +1,7 @@
 
-## 0.2.4
+## 0.2.5
+## v0.2.4
+* bcd8b20 0.2.4
 ## v0.2.3
 * 35f5305 0.2.3
 * 455edcf commenting broken command of pnpm
