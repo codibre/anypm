@@ -1,5 +1,8 @@
 
-## 0.2.5
+## 0.2.6
+* 662625c fixing uncaught exception and non installed @types package error
+## v0.2.5
+* 74052fd 0.2.5
 ## v0.2.4
 * bcd8b20 0.2.4
 ## v0.2.3
