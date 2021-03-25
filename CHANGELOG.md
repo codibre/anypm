@@ -1,5 +1,8 @@
 
-## 0.3.1
+## 0.3.2
+* decd727 removing missing console.log
+## v0.3.1
+* 6e0bdff 0.3.1
 * b21070c fixing use of proper hoist
 ## v0.3.0
 * 151b990 0.3.0
