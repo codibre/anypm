@@ -4,6 +4,7 @@ import { manageLocks } from './manage-locks';
 import { prepareManager } from './prepare-manager';
 import { mountNpmCommand } from './mount-npm-command';
 import { prepareOptions } from './prepare-options';
+import { properHoist } from './proper-hoist';
 
 interface InstallOptions {
 	keepLock: boolean;
@@ -21,13 +22,16 @@ export async function* install(
 	if (packages.length === 0 || options.keepLock) {
 		yield* prepareManager(hasCommand);
 	}
+	const hasPackages = packages.length > 0;
+	packages.push(properHoist);
 
 	yield mountNpmCommand(command, ARG0, packages, options.saveDev);
 
-	if (packages.length > 0) {
+	if (hasPackages) {
 		const types = await getTypes(packages);
 
 		if (types.length > 0) {
+			types.push(properHoist);
 			yield mountNpmCommand(command, ARG0, types, true);
 		}
 	}
