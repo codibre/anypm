@@ -1,5 +1,8 @@
 
-## 0.3.0
+## 0.3.1
+* b21070c fixing use of proper hoist
+## v0.3.0
+* 151b990 0.3.0
 * b00b6ec using proper hoist for npm compability
 ## v0.2.6
 * 32ece6d 0.2.6
