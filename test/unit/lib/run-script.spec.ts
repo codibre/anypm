@@ -33,24 +33,23 @@ describe(runScriptFactory.name, () => {
 		expect(result).toBeUndefined();
 	});
 
-	it('should throw an error when some command fails', async () => {
+	it('should omit error when some command fails', async () => {
 		commands = jest.fn().mockImplementation(function* (a: string) {
 			setImmediate(() => emitter.emit('exit', 1));
 			yield [`command1 ${a}`, ['p1', 'p2', 'p3']];
 			setImmediate(() => emitter.emit('exit', 0));
 			yield [`command2 ${a}`, ['p4', 'p5', 'p6']];
 		});
-		let thrownError: any;
 
 		const callback = runScriptFactory(commands);
-		try {
-			await callback('test');
-		} catch (err) {
-			thrownError = err;
-		}
+		const result = await callback('test');
 
-		expectCallsLike(emitter.once, ['exit', expect.any(Function)]);
+		expectCallsLike(
+			emitter.once,
+			['exit', expect.any(Function)],
+			['exit', expect.any(Function)],
+		);
 		expectCallsLike(commands, ['test']);
-		expect(thrownError).toBeTruthy();
+		expect(result).toBeUndefined();
 	});
 });

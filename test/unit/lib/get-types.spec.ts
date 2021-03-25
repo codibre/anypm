@@ -8,7 +8,7 @@ describe(getTypes.name, () => {
 			.mockImplementation(async (x) => x !== '@types/pack2');
 	});
 
-	it('should return true when command exists', async () => {
+	it('should return types packages to install', async () => {
 		const result = await getTypes([
 			'pack1',
 			'@types/pack1',
@@ -24,5 +24,22 @@ describe(getTypes.name, () => {
 			['@types/pack3'],
 		);
 		expect(result).toEqual(['@types/company__pack1', '@types/pack3']);
+	});
+
+	it('should return only types pacakges present on the informed reference object', async () => {
+		const result = await getTypes(
+			['pack1', '@types/pack1', '@company/pack1', 'pack2', 'pack3'],
+			{
+				'@types/company__pack1': '1',
+				'@types/pack2': '2',
+			},
+		);
+
+		expectCallsLike(
+			lib.packageExists,
+			['@types/company__pack1'],
+			['@types/pack2'],
+		);
+		expect(result).toEqual(['@types/company__pack1']);
 	});
 });

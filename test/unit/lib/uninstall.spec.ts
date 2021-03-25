@@ -6,6 +6,9 @@ import * as prepareManagerLib from '../../../src/lib/prepare-manager';
 import * as getTypesLib from '../../../src/lib/get-types';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
 import { expectCallsLike } from '../setup';
+import { sync } from 'read-pkg';
+
+const devDependencies = sync().devDependencies;
 
 describe(uninstall.name, () => {
 	const typesPack = ['@types/pack1', '@types/pack2'];
@@ -45,7 +48,7 @@ describe(uninstall.name, () => {
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
-		expectCallsLike(getTypesLib.getTypes, [packs]);
+		expectCallsLike(getTypesLib.getTypes, [packs, devDependencies]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',
@@ -78,7 +81,7 @@ describe(uninstall.name, () => {
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
-		expectCallsLike(getTypesLib.getTypes, [packs]);
+		expectCallsLike(getTypesLib.getTypes, [packs, devDependencies]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',

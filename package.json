@@ -101,6 +101,7 @@
   "dependencies": {
     "commander": "^7.1.0",
     "npm-api": "^1.0.1",
+    "read-pkg": "^5.2.0",
     "which": "^2.0.2"
   },
   "bin": {

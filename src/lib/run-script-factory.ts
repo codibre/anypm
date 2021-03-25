@@ -6,11 +6,11 @@ export function runScriptFactory<T extends Array<unknown>>(
 ) {
 	return async (...params: T) => {
 		for await (const [command, args] of commands(...params)) {
-			await new Promise<void>((resolve, reject) => {
+			await new Promise<void>((resolve) => {
 				const child = spawn(command, args, {
 					stdio: [process.stdin, process.stdout, process.stderr],
 				});
-				child.once('exit', (x) => (x ? reject(x) : resolve()));
+				child.once('exit', resolve);
 			});
 		}
 	};
