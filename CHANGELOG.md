@@ -1,5 +1,8 @@
 
-## 0.3.2
+## 0.3.3
+* 5a50587 ignoring packages not present in package.json during uninstall
+## v0.3.2
+* 6759bf6 0.3.2
 * decd727 removing missing console.log
 ## v0.3.1
 * 6e0bdff 0.3.1
