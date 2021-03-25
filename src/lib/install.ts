@@ -23,7 +23,7 @@ export async function* install(
 		yield* prepareManager(hasCommand);
 	}
 	const hasPackages = packages.length > 0;
-	packages.push(properHoist);
+	packages.unshift(properHoist);
 
 	yield mountNpmCommand(command, ARG0, packages, options.saveDev);
 
@@ -31,7 +31,7 @@ export async function* install(
 		const types = await getTypes(packages);
 
 		if (types.length > 0) {
-			types.push(properHoist);
+			types.unshift(properHoist);
 			yield mountNpmCommand(command, ARG0, types, true);
 		}
 	}

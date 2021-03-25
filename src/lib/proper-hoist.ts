@@ -1,1 +1,1 @@
-export const properHoist = ' --shamefully-hoist';
+export const properHoist = '--shamefully-hoist';
