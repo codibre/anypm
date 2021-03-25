@@ -4,7 +4,6 @@ export async function getTypes(
 	packages: string[],
 	current?: Record<string, string>,
 ) {
-	console.log(current);
 	function* getPackages() {
 		for (const pkg of packages) {
 			if (!pkg.startsWith('@types')) {
