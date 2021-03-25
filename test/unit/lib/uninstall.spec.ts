@@ -8,7 +8,11 @@ import * as manageLocksLib from '../../../src/lib/manage-locks';
 import { expectCallsLike } from '../setup';
 import { sync } from 'read-pkg';
 
-const devDependencies = sync().devDependencies;
+const project = sync();
+const ref = new Set([
+	...Object.keys(project.dependencies || {}),
+	...Object.keys(project.devDependencies || {}),
+]);
 
 describe(uninstall.name, () => {
 	const typesPack = ['@types/pack1', '@types/pack2'];
@@ -36,7 +40,7 @@ describe(uninstall.name, () => {
 	});
 
 	it('should mount commands with preparing when keepLock is true', async () => {
-		const packs = ['pack1', 'pack2', 'pack3'];
+		const packs = ['commander', 'npm-api', 'read-pkg'];
 		const options = 'my options' as any;
 
 		const iterable = uninstall(packs, options);
@@ -48,7 +52,7 @@ describe(uninstall.name, () => {
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
-		expectCallsLike(getTypesLib.getTypes, [packs, devDependencies]);
+		expectCallsLike(getTypesLib.getTypes, [packs, ref]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',
@@ -68,7 +72,7 @@ describe(uninstall.name, () => {
 	});
 
 	it('should mount commands with no type installing when there is not types to uninstall', async () => {
-		const packs = ['pack1', 'pack2', 'pack3'];
+		const packs = ['commander', 'npm-api', 'read-pkg'];
 		const options = 'my options' as any;
 		jest.spyOn(getTypesLib, 'getTypes').mockResolvedValue([]);
 
@@ -81,7 +85,7 @@ describe(uninstall.name, () => {
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
 		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
-		expectCallsLike(getTypesLib.getTypes, [packs, devDependencies]);
+		expectCallsLike(getTypesLib.getTypes, [packs, ref]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',

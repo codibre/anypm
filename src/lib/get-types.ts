@@ -1,9 +1,6 @@
 import { packageExists } from './package-exists';
 
-export async function getTypes(
-	packages: string[],
-	current?: Record<string, string>,
-) {
+export async function getTypes(packages: string[], current?: Set<string>) {
 	function* getPackages() {
 		for (const pkg of packages) {
 			if (!pkg.startsWith('@types')) {
@@ -12,7 +9,7 @@ export async function getTypes(
 				}`;
 				if (
 					!packages.includes(typePackage) &&
-					(!current || current[typePackage])
+					(!current || current.has(typePackage))
 				) {
 					yield packageExists(typePackage).then((x) =>
 						x ? typePackage : undefined,

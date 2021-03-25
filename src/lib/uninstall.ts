@@ -19,8 +19,13 @@ export async function* uninstall(
 	const options = prepareOptions(informedOptions);
 	const { hasCommand: hasPNPM, command } = await getCommand();
 	const currentPackages = sync();
+	const ref = new Set([
+		...Object.keys(currentPackages.dependencies || {}),
+		...Object.keys(currentPackages.devDependencies || {}),
+	]);
+	const filteredPackages = packages.filter((x) => ref.has(x));
 	yield* prepareManager(hasPNPM);
-	const types = await getTypes(packages, currentPackages.devDependencies);
-	yield mountNpmCommand(command, ARG0, [...packages, ...types]);
+	const types = await getTypes(filteredPackages, ref);
+	yield mountNpmCommand(command, ARG0, [...filteredPackages, ...types]);
 	yield* manageLocks(hasPNPM, options);
 }

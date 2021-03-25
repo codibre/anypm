@@ -29,10 +29,7 @@ describe(getTypes.name, () => {
 	it('should return only types pacakges present on the informed reference object', async () => {
 		const result = await getTypes(
 			['pack1', '@types/pack1', '@company/pack1', 'pack2', 'pack3'],
-			{
-				'@types/company__pack1': '1',
-				'@types/pack2': '2',
-			},
+			new Set(['@types/company__pack1', '@types/pack2']),
 		);
 
 		expectCallsLike(
