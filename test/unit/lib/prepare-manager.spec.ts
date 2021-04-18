@@ -2,8 +2,7 @@ import { prepareManager } from '../../../src/lib/prepare-manager';
 import fs = require('fs');
 import { expectCallsLike } from '../setup';
 
-// TODO: uncomment when https://github.com/pnpm/pnpm/issues/3263 is fixed
-// const packageLockPath = `${process.cwd()}/package-lock.json`;
+const packageLockPath = `${process.cwd()}/package-lock.json`;
 describe(prepareManager.name, () => {
 	let existsSync: jest.SpyInstance;
 
@@ -23,20 +22,17 @@ describe(prepareManager.name, () => {
 
 		const result = Array.from(prepareManager(true));
 
-		// expectCallsLike(existsSync, [packageLockPath]);
-		// expect(result).toEqual([
-		// 	['npm', ['i']],
-		// 	['npx', ['del-cli', 'node_modules']],
-		// 	['pnpm', ['import']],
-		// ]);
-		expect(result).toEqual([]);
+		expectCallsLike(existsSync, [packageLockPath]);
+		expect(result).toEqual([
+			['npm', ['i']],
+			['npx', ['del-cli', 'node_modules']],
+		]);
 	});
 
 	it('should yield preparing commands when hasPNPM is true', () => {
 		const result = Array.from(prepareManager(true));
 
-		// expectCallsLike(existsSync, [packageLockPath]);
-		// expect(result).toEqual([['pnpm', ['import']]]);
-		expect(result).toEqual([]);
+		expectCallsLike(existsSync, [packageLockPath]);
+		expect(result).toEqual([['npx', ['del-cli', 'node_modules']]]);
 	});
 });
