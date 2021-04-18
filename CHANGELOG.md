@@ -1,5 +1,8 @@
 
-## 0.3.3
+## 0.4.0
+* 5d58ee3 bettering anypm i with no parameters
+## v0.3.3
+* a72d130 0.3.3
 * 5a50587 ignoring packages not present in package.json during uninstall
 ## v0.3.2
 * 6759bf6 0.3.2
