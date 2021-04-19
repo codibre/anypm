@@ -1,7 +1,6 @@
 import { getCommand } from '../../../src/lib/get-command';
 import * as configLib from '../../../src/lib/config';
 import * as lib from '../../../src/lib/command-exists';
-import { expectCallsLike } from '../setup';
 
 describe(getCommand.name, () => {
 	let commandExists: jest.SpyInstance;

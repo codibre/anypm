@@ -1,7 +1,8 @@
 import { CommandInfo } from './command-info';
+import { Command } from './config';
 
 export function mountNpmCommand(
-	command: string,
+	command: Command,
 	arg0: string,
 	packages: string[],
 	saveDev?: boolean,

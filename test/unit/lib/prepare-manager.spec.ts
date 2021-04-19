@@ -1,6 +1,5 @@
 import { prepareManager } from '../../../src/lib/prepare-manager';
 import fs = require('fs');
-import { expectCallsLike } from '../setup';
 
 const packageLockPath = `${process.cwd()}/package-lock.json`;
 describe(prepareManager.name, () => {

@@ -4,11 +4,9 @@ import { getTypes } from './get-types';
 import { manageLocks } from './manage-locks';
 import { mountNpmCommand } from './mount-npm-command';
 import { prepareManager } from './prepare-manager';
-import { prepareOptions } from './prepare-options';
+import { BaseOptions, prepareOptions } from './prepare-options';
 
-export interface UninstallOptions {
-	keepLock: boolean;
-}
+export interface UninstallOptions extends BaseOptions {}
 
 const ARG0 = 'uninstall';
 

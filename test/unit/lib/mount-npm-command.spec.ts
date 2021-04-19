@@ -2,7 +2,7 @@ import { mountNpmCommand } from '../../../src/lib/mount-npm-command';
 
 describe(mountNpmCommand.name, () => {
 	it('should mount command with no save-dev parameter when saveDev is not informed', () => {
-		const result = mountNpmCommand('myNPM', 'doABarrelRoll', [
+		const result = mountNpmCommand('myNPM' as any, 'doABarrelRoll', [
 			'pack1',
 			'pack2',
 			'pack3',
@@ -16,7 +16,7 @@ describe(mountNpmCommand.name, () => {
 
 	it('should mount command with no save-dev parameter when saveDev is false', () => {
 		const result = mountNpmCommand(
-			'myNPM',
+			'myNPM' as any,
 			'doABarrelRoll',
 			['pack1', 'pack2', 'pack3'],
 			false,
@@ -30,7 +30,7 @@ describe(mountNpmCommand.name, () => {
 
 	it('should mount command with save-dev parameter when saveDev is true', () => {
 		const result = mountNpmCommand(
-			'myNPM',
+			'myNPM' as any,
 			'doABarrelRoll',
 			['pack1', 'pack2', 'pack3'],
 			true,

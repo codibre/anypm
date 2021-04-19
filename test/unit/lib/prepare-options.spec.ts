@@ -1,6 +1,5 @@
 import * as lib from '../../../src/lib/config';
 import { prepareOptions } from '../../../src/lib/prepare-options';
-import { expectCallsLike } from '../setup';
 
 describe(prepareOptions.name, () => {
 	let getConfig: jest.SpyInstance;

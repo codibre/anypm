@@ -6,7 +6,6 @@ jest.mock(`${process.cwd()}/anypmrc.json`, () => ({
 }));
 import * as fs from 'fs';
 import { getConfig } from '../../../src/lib/config';
-import { expectCallsLike } from '../setup';
 
 describe(getConfig.name, () => {
 	const path = `${process.cwd()}/anypmrc.json`;

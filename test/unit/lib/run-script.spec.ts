@@ -1,5 +1,4 @@
 import { runScriptFactory } from '../../../src/lib/run-script-factory';
-import { expectCallsLike } from '../setup';
 import * as childProcess from 'child_process';
 import { EventEmitter } from 'events';
 

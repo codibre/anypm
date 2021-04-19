@@ -3,7 +3,6 @@ const repo = jest.fn().mockReturnValue({ prop });
 const NpmApi = jest.fn().mockReturnValue({ repo });
 jest.mock('npm-api', () => NpmApi);
 import { packageExists } from '../../../src/lib/package-exists';
-import { expectCallsLike } from '../setup';
 
 describe(packageExists.name, () => {
 	it('should return false when deprecated is filled', async () => {

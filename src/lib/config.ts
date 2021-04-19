@@ -1,8 +1,10 @@
 import { existsSync } from 'fs';
 
+export type Command = 'pnpm' | 'npm';
+
 export interface Config {
 	keepLock: boolean;
-	command: string;
+	command: Command;
 }
 
 let cache: Config | undefined;

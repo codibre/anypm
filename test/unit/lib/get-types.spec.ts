@@ -1,6 +1,6 @@
 import { getTypes } from '../../../src/lib/get-types';
 import * as lib from '../../../src/lib/package-exists';
-import { expectCallsLike } from '../setup';
+
 describe(getTypes.name, () => {
 	beforeEach(() => {
 		jest

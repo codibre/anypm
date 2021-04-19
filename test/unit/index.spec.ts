@@ -1,6 +1,4 @@
 import { program } from 'commander';
-import './setup';
-import { expectCallsLike } from './setup';
 
 describe('index.ts', () => {
 	afterEach(() => {
@@ -21,6 +19,7 @@ describe('index.ts', () => {
 			program.command,
 			['install [packages...]'],
 			['uninstall <packages...>'],
+			['ci'],
 			['help', { isDefault: true }],
 		);
 		expectCallsLike(program.parse, [['args']]);

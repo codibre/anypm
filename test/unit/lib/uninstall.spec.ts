@@ -5,7 +5,6 @@ import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as prepareManagerLib from '../../../src/lib/prepare-manager';
 import * as getTypesLib from '../../../src/lib/get-types';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
-import { expectCallsLike } from '../setup';
 import { sync } from 'read-pkg';
 
 const project = sync();
@@ -23,7 +22,7 @@ describe(uninstall.name, () => {
 			.mockReturnValue('my prepared options' as any);
 		jest.spyOn(getCommandLib, 'getCommand').mockResolvedValue({
 			hasCommand: 'hasPNPM value' as any,
-			command: 'myNPM',
+			command: 'myNPM' as any,
 		});
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')

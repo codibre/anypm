@@ -1,9 +1,9 @@
 import { CommandInfo } from './command-info';
-import { existsSync } from 'fs';
+import { hasNoPackageLock } from './has-no-package-lock';
 
 export function* prepareManager(hasPNPM: boolean): Iterable<CommandInfo> {
 	if (hasPNPM) {
-		if (!existsSync(`${process.cwd()}/package-lock.json`)) {
+		if (hasNoPackageLock()) {
 			yield ['npm', ['i']];
 		}
 		yield ['npx', ['del-cli', 'node_modules']];

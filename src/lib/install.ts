@@ -3,11 +3,10 @@ import { getCommand } from './get-command';
 import { manageLocks } from './manage-locks';
 import { prepareManager } from './prepare-manager';
 import { mountNpmCommand } from './mount-npm-command';
-import { prepareOptions } from './prepare-options';
+import { BaseOptions, prepareOptions } from './prepare-options';
 import { properHoist } from './proper-hoist';
 
-interface InstallOptions {
-	keepLock: boolean;
+interface InstallOptions extends BaseOptions {
 	saveDev: boolean;
 }
 

@@ -1,7 +1,7 @@
 import { getConfig } from './config';
 
 export interface BaseOptions {
-	keepLock: boolean;
+	keepLock?: boolean;
 }
 
 export function prepareOptions<T extends BaseOptions>(options: T) {
