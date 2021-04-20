@@ -7,6 +7,7 @@ import * as manageLocksLib from '../../../src/lib/manage-locks';
 import * as dropNodeModulesLib from '../../../src/lib/drop-node-modules';
 import { Command } from '../../../src/lib/config';
 import { ci } from '../../../src/lib/ci';
+import { properHoist } from '../../../src/lib/proper-hoist';
 
 describe(install.name, () => {
 	let hasNoPackageLock: jest.SpyInstance;
@@ -99,7 +100,7 @@ describe(install.name, () => {
 		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike(
 			['pnpm', 'import', []],
-			['pnpm', 'install', ['--frozen-lockfile']],
+			['pnpm', 'install', ['--frozen-lockfile', properHoist]],
 		);
 		expect(manageLocksLib.manageLocks).toHaveCallsLike([
 			'hasPNPM value',
@@ -109,7 +110,7 @@ describe(install.name, () => {
 			['drop', ['modules1']],
 			['drop', ['modules2']],
 			['pnpm', ['import', []]],
-			['pnpm', ['install', ['--frozen-lockfile']]],
+			['pnpm', ['install', ['--frozen-lockfile', properHoist]]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
