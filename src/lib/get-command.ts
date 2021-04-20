@@ -5,6 +5,7 @@ import { getNpm } from './get-npm';
 export async function getCommand() {
 	const config = getConfig();
 	const hasCommand = !!(await commandExists(config.command));
-	const command = hasCommand ? config.command : await getNpm();
+	const command =
+		hasCommand && config.command !== 'npm' ? config.command : await getNpm();
 	return { hasCommand, command };
 }
