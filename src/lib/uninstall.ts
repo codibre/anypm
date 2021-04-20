@@ -3,7 +3,6 @@ import { getCommand } from './get-command';
 import { getTypes } from './get-types';
 import { manageLocks } from './manage-locks';
 import { mountNpmCommand } from './mount-npm-command';
-import { prepareManager } from './prepare-manager';
 import { BaseOptions, prepareOptions } from './prepare-options';
 
 export interface UninstallOptions extends BaseOptions {}
@@ -22,7 +21,6 @@ export async function* uninstall(
 		...Object.keys(currentPackages.devDependencies || {}),
 	]);
 	const filteredPackages = packages.filter((x) => ref.has(x));
-	yield* prepareManager(hasPNPM);
 	const types = await getTypes(filteredPackages, ref);
 	yield mountNpmCommand(command, ARG0, [...filteredPackages, ...types]);
 	yield* manageLocks(hasPNPM, options);

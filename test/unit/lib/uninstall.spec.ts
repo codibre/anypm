@@ -2,7 +2,6 @@ import { uninstall } from '../../../src/lib/uninstall';
 import * as prepareOptionsLib from '../../../src/lib/prepare-options';
 import * as getCommandLib from '../../../src/lib/get-command';
 import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
-import * as prepareManagerLib from '../../../src/lib/prepare-manager';
 import * as getTypesLib from '../../../src/lib/get-types';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
 import { sync } from 'read-pkg';
@@ -27,10 +26,6 @@ describe(uninstall.name, () => {
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')
 			.mockImplementation((...[a, ...others]: any[]) => [a, others]);
-		jest.spyOn(prepareManagerLib, 'prepareManager').mockReturnValue([
-			['prepare', ['command1']],
-			['prepare2', ['command2']],
-		]);
 		jest.spyOn(getTypesLib, 'getTypes').mockResolvedValue(typesPack);
 		jest.spyOn(manageLocksLib, 'manageLocks').mockReturnValue([
 			['finish', ['command1f']],
@@ -50,7 +45,6 @@ describe(uninstall.name, () => {
 
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
 		expectCallsLike(getTypesLib.getTypes, [packs, ref]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
@@ -62,8 +56,6 @@ describe(uninstall.name, () => {
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['prepare', ['command1']],
-			['prepare2', ['command2']],
 			['myNPM', ['uninstall', [...packs, ...typesPack]]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
@@ -83,7 +75,6 @@ describe(uninstall.name, () => {
 
 		expectCallsLike(prepareOptionsLib.prepareOptions, ['my options']);
 		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
 		expectCallsLike(getTypesLib.getTypes, [packs, ref]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
@@ -95,8 +86,6 @@ describe(uninstall.name, () => {
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['prepare', ['command1']],
-			['prepare2', ['command2']],
 			['myNPM', ['uninstall', packs]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
