@@ -1,5 +1,9 @@
 
-## 0.4.0
+## 0.5.0
+* 8f87f04 preparing anypm ci command and tests
+* ed64b27 adding npm ci
+## v0.4.0
+* 74befb3 0.4.0
 * 5d58ee3 bettering anypm i with no parameters
 ## v0.3.3
 * a72d130 0.3.3
