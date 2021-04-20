@@ -1,5 +1,8 @@
 
-## 0.5.1
+## 0.5.2
+* 3a92db7 treating config as npm command
+## v0.5.1
+* c4c8fbc 0.5.1
 * 456af92 adding experimental option for npm replacement
 ## v0.5.0
 * dedd2b8 0.5.0
