@@ -2,7 +2,7 @@ import { CommandInfo } from './command-info';
 import { Command } from './config';
 
 export function mountNpmCommand(
-	command: Command,
+	command: Command | 'npx',
 	arg0: string,
 	packages: string[],
 	saveDev?: boolean,

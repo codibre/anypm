@@ -7,9 +7,14 @@ afterEach(() => {
 });
 
 declare global {
+	function fName(result: unknown): string;
 	function getNames<T extends object>(c: { prototype: T }): T;
 	function expectCallsLike(spy: any, ...params: unknown[][]): void;
 }
+
+global.fName = function fName(result: unknown): string {
+	return `${result}()`;
+};
 
 global.getNames = function getNames<T extends object>(c: { prototype: T }): T {
 	return new Proxy(c.prototype, {
@@ -19,7 +24,7 @@ global.getNames = function getNames<T extends object>(c: { prototype: T }): T {
 				throw new Error(`Method ${property} doesn't exist`);
 			}
 
-			return result;
+			return `.${fName(result)}`;
 		},
 	});
 };

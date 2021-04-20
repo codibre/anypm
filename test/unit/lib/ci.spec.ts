@@ -4,6 +4,7 @@ import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as prepareOptionsLib from '../../../src/lib/prepare-options';
 import * as lockLib from '../../../src/lib/has-no-package-lock';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
+import * as dropNodeModulesLib from '../../../src/lib/drop-node-modules';
 import { Command } from '../../../src/lib/config';
 import { ci } from '../../../src/lib/ci';
 
@@ -29,6 +30,10 @@ describe(install.name, () => {
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
+		jest.spyOn(dropNodeModulesLib, 'dropNodeModules').mockReturnValue([
+			['drop', ['modules1']],
+			['drop', ['modules2']],
+		] as any);
 	});
 
 	it('should thrown an error when there is not package-lock', async () => {
@@ -46,6 +51,7 @@ describe(install.name, () => {
 
 		expect(getCommandLib.getCommand).toHaveCallsLike();
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike();
+		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike();
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike();
 		expect(manageLocksLib.manageLocks).toHaveCallsLike();
 		expect(thrownError).toBeInstanceOf(Error);
@@ -61,6 +67,7 @@ describe(install.name, () => {
 
 		expect(getCommandLib.getCommand).toHaveCallsLike([]);
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
+		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'npm',
 			'ci',
@@ -71,6 +78,8 @@ describe(install.name, () => {
 			'prepared option',
 		]);
 		expect(result).toEqual([
+			['drop', ['modules1']],
+			['drop', ['modules2']],
 			['npm', ['ci', []]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
@@ -87,16 +96,19 @@ describe(install.name, () => {
 
 		expect(getCommandLib.getCommand).toHaveCallsLike([]);
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
-		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
-			'pnpm',
-			'install',
-			['--frozen-lockfile'],
-		]);
+		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
+		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike(
+			['pnpm', 'import', []],
+			['pnpm', 'install', ['--frozen-lockfile']],
+		);
 		expect(manageLocksLib.manageLocks).toHaveCallsLike([
 			'hasPNPM value',
 			'prepared option',
 		]);
 		expect(result).toEqual([
+			['drop', ['modules1']],
+			['drop', ['modules2']],
+			['pnpm', ['import', []]],
 			['pnpm', ['install', ['--frozen-lockfile']]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],

@@ -15,24 +15,28 @@
   },
   {
       "type": "node",
-      "runtimeVersion": "14.15.4",
       "request": "launch",
       "name": "Launch program",
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceRoot}",
       "envFile": "${workspaceFolder}/.env",
+      "runtimeExecutable": "${env:NVM_DIR}/nvm-exec",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceRoot}/src/index.ts"],
+      "args": [
+        "node",
+        "${workspaceRoot}/src/index.ts"
+      ],
       "outputCapture": "std",
     },
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "14.15.4",
       "name": "Tests",
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "${env:NVM_DIR}/nvm-exec",
       "args": [
+        "node",
         "-r", "ts-node/register",
         "${workspaceRoot}/node_modules/jest/bin/jest",
         "test/unit",

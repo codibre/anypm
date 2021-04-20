@@ -46,6 +46,13 @@ anypm uninstall express
 anypm un express
 ```
 
+To install modules resolving from package-lock (npm ci equivalent):
+
+```
+anypm ci
+```
+
+
 ## License
 
 Licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License).
