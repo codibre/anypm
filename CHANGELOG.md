@@ -1,5 +1,8 @@
 
-## 0.5.0
+## 0.5.1
+* 456af92 adding experimental option for npm replacement
+## v0.5.0
+* dedd2b8 0.5.0
 * 8f87f04 preparing anypm ci command and tests
 * ed64b27 adding npm ci
 ## v0.4.0
