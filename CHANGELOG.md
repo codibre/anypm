@@ -1,5 +1,8 @@
 
-## 0.5.2
+## 0.5.3
+* 6d9e40c fixing delete
+## v0.5.2
+* cdcc5b2 0.5.2
 * 3a92db7 treating config as npm command
 ## v0.5.1
 * c4c8fbc 0.5.1
