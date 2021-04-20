@@ -11,7 +11,7 @@ describe('index.ts', () => {
 	});
 
 	it('should set available commands', () => {
-		process.argv = ['args'];
+		process.argv = ['', '', 'install'];
 
 		require('../../src/index');
 
@@ -20,8 +20,9 @@ describe('index.ts', () => {
 			['install [packages...]'],
 			['uninstall <packages...>'],
 			['ci'],
+			['replace'],
 			['help', { isDefault: true }],
 		);
-		expectCallsLike(program.parse, [['args']]);
+		expectCallsLike(program.parse, [['', '', 'install']]);
 	});
 });
