@@ -1,5 +1,8 @@
 
-## 0.5.4
+## 0.5.5
+* dda460e removing wrong dependency
+## v0.5.4
+* 04ea03a 0.5.4
 * d8825ad new version
 ## v0.5.3
 * e2df053 0.5.3
