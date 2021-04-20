@@ -1,5 +1,8 @@
 
-## 0.5.5
+## 0.5.6
+* 9723c3a fixing ci with proper hoist
+## v0.5.5
+* 50e8733 0.5.5
 * dda460e removing wrong dependency
 ## v0.5.4
 * 04ea03a 0.5.4
