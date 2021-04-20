@@ -1,5 +1,8 @@
 
-## 0.5.3
+## 0.5.4
+* d8825ad new version
+## v0.5.3
+* e2df053 0.5.3
 * 6d9e40c fixing delete
 ## v0.5.2
 * cdcc5b2 0.5.2
