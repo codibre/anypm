@@ -22,6 +22,7 @@ describe('index.ts', () => {
 			['ci'],
 			['audit'],
 			['replace'],
+			['nvmrc'],
 			['help', { isDefault: true }],
 		);
 		expectCallsLike(program.parse, [['', '', 'install']]);
