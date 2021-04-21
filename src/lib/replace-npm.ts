@@ -13,5 +13,5 @@ export async function replaceNpm() {
 	const npmPath = await runCmd('which npm');
 	await runCmd(`alias realnpm=${npmPath}`);
 	await runCmd('alias npm=anypm');
-	console.info('Npm replaced successfully! Run alias npm=anypm to finalize!');
+	console.info('Npm replaced successfully!');
 }
