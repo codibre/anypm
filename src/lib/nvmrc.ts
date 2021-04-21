@@ -1,3 +1,4 @@
+import { replaceNpm } from './replace-npm';
 import { runCmd } from './run-cmd';
 
 export async function nvmrc() {
@@ -21,6 +22,6 @@ loadnvmrc() {
     nvm use default
   fi
 }
-loadnvmrc
-anypm replace`);
+loadnvmrc`);
+	await replaceNpm();
 }
