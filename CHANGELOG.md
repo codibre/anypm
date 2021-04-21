@@ -1,5 +1,8 @@
 
-## 0.7.2
+## 0.7.3
+* 161b9c2 fixing replacement message
+## v0.7.2
+* 5265936 0.7.2
 * 11fe999 updating readme
 ## v0.7.1
 * fe0f1ff 0.7.1
