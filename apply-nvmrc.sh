@@ -10,12 +10,19 @@ loadnvmrc() {
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
       nvm install
+      anypm replace
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
       nvm use
+      anypm replace
     fi
   elif [ "$node_version" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
+    anypm replace
   fi
 }
 loadnvmrc
+cd() {
+	builtin cd "$1"
+	loadnvmrc
+}

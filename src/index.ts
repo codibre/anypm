@@ -84,7 +84,7 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 		.description(
 			'Proxy for nvm command which automatic set node for .nvmrc informed version and replace npm with anypm',
 		)
-		.action(nvmrc);
+		.action(runScriptFactory(nvmrc));
 	program
 		.command('help', { isDefault: true })
 		.description('show help information')
