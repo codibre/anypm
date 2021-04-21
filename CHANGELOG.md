@@ -1,5 +1,11 @@
 
-## 0.6.2
+## 0.7.0
+* 1dedb8e adding script package
+* fe0d375 creating experimental nvmrc command
+* 176339a trying ot make nvmrc work
+* cd5d1ba trying ot make nvmrc work
+## v0.6.2
+* cc4f751 0.6.2
 * c6b6ab4 fixing test
 * a0f51ff adding nvmrc command
 ## v0.6.1
