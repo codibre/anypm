@@ -1,5 +1,8 @@
 
-## 0.6.0
+## 0.6.1
+* d7745c3 removing source map
+## v0.6.0
+* 19daac1 0.6.0
 * 980c960 creating audit and audit fix
 ## v0.5.6
 * d8a6b24 0.5.6
