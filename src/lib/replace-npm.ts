@@ -1,7 +1,5 @@
-import { writeFileSync } from 'fs';
 import { isAliasEnabled } from './is-alias-enabled';
 import { runCmd } from './run-cmd';
-import { homedir } from 'os';
 
 export async function replaceNpm() {
 	if (process.platform !== 'linux') {
@@ -13,9 +11,7 @@ export async function replaceNpm() {
 	}
 
 	const npmPath = await runCmd('which npm');
-	writeFileSync(`${homedir()}/.anypmrc`, npmPath, {
-		flag: 'w',
-	});
+	await runCmd(`alias realnpm=${npmPath}`);
 	await runCmd('alias npm=anypm');
 	console.info('Npm replaced successfully! Run alias npm=anypm to finalize!');
 }

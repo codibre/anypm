@@ -9,6 +9,7 @@ import { mountNpmCommand } from './lib/mount-npm-command';
 import { replaceNpm } from './lib/replace-npm';
 import { runScriptFactory } from './lib/run-script-factory';
 import { uninstall } from './lib/uninstall';
+import { nvmrc } from './lib/nvmrc';
 
 const knownCommands = [
 	'install',
@@ -19,6 +20,7 @@ const knownCommands = [
 	'help',
 	'audit',
 	'replace',
+	'nvmrc',
 ];
 const COMMAND_POSITION = 2;
 const ARGS_POSITION = 3;
@@ -77,6 +79,12 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 		.command('replace')
 		.description('Replace npm command for anypm')
 		.action(replaceNpm);
+	program
+		.command('nvmrc')
+		.description(
+			'Proxy for nvm command which automatic set node for .nvmrc informed version and replace npm with anypm',
+		)
+		.action(nvmrc);
 	program
 		.command('help', { isDefault: true })
 		.description('show help information')

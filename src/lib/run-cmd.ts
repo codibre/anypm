@@ -1,6 +1,9 @@
 import { exec } from 'child_process';
 
-export async function runCmd(cmd: string): Promise<string> {
+export async function runCmd(
+	cmd: string,
+	defaultReturn?: string,
+): Promise<string> {
 	try {
 		return new Promise((resolve, reject) => {
 			exec(cmd, function (err, stdout, stderr) {
@@ -12,7 +15,11 @@ export async function runCmd(cmd: string): Promise<string> {
 			});
 		});
 	} catch (err) {
-		console.error(`Command ${cmd} failed: ${err.message}`);
-		process.exit(-1);
+		if (defaultReturn === undefined) {
+			console.error(`Command ${cmd} failed: ${err.message}`);
+			process.exit(-1);
+		} else {
+			return defaultReturn;
+		}
 	}
 }
