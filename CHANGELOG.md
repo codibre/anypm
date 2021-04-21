@@ -1,5 +1,8 @@
 
-## 0.7.0
+## 0.7.1
+* 6ea6c2d making command easier
+## v0.7.0
+* 423be68 0.7.0
 * 1dedb8e adding script package
 * fe0d375 creating experimental nvmrc command
 * 176339a trying ot make nvmrc work
