@@ -1,5 +1,8 @@
 
-## 0.7.1
+## 0.7.2
+* 11fe999 updating readme
+## v0.7.1
+* fe0f1ff 0.7.1
 * 6ea6c2d making command easier
 ## v0.7.0
 * 423be68 0.7.0
