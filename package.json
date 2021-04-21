@@ -9,7 +9,8 @@
     "node": ">=10"
   },
   "files": [
-    "dist"
+    "dist",
+    "apply-nvmrc.sh"
   ],
   "main": "dist/index.js",
   "scripts": {
