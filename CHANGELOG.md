@@ -1,5 +1,8 @@
 
-## 0.5.6
+## 0.6.0
+* 980c960 creating audit and audit fix
+## v0.5.6
+* d8a6b24 0.5.6
 * 9723c3a fixing ci with proper hoist
 ## v0.5.5
 * 50e8733 0.5.5
