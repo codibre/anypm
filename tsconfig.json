@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "importsNotUsedAsValues":"remove",
     "target": "es2018",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "noImplicitAny": true,
     "alwaysStrict": true,
