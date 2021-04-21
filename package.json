@@ -36,7 +36,7 @@
     "lint:style": "eslint '**/*.ts'",
     "lint:style:fix": "eslint '**/*.ts' --fix",
     "semantic-release": "semantic-release",
-    "prepare": "husky install"
+    "prepublishOnly": "npm run build"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "commander": "^7.2.0",
+    "is-this-a-pigeon": "^0.4.1",
     "npm-api": "^1.0.1",
     "read-pkg": "^5.2.0",
     "which": "^2.0.2"

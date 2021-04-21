@@ -3,12 +3,11 @@ import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as prepareOptionsLib from '../../../src/lib/prepare-options';
 import * as lockLib from '../../../src/lib/has-no-package-lock';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
-import * as dropNodeModulesLib from '../../../src/lib/drop-node-modules';
 import { Command } from '../../../src/lib/config';
-import { ci } from '../../../src/lib/ci';
+import { auditFix } from '../../../src/lib/audit-fix';
 import { properHoist } from '../../../src/lib/proper-hoist';
 
-describe(fName(ci), () => {
+describe(fName(auditFix), () => {
 	let hasNoPackageLock: jest.SpyInstance;
 	let command: Command;
 
@@ -30,10 +29,6 @@ describe(fName(ci), () => {
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
-		jest.spyOn(dropNodeModulesLib, 'dropNodeModules').mockReturnValue([
-			['drop', ['modules1']],
-			['drop', ['modules2']],
-		] as any);
 	});
 
 	it('should thrown an error when there is not package-lock', async () => {
@@ -42,7 +37,7 @@ describe(fName(ci), () => {
 
 		try {
 			const result: any[] = [];
-			for await (const item of ci({})) {
+			for await (const item of auditFix({})) {
 				result.push(item);
 			}
 		} catch (err) {
@@ -51,53 +46,42 @@ describe(fName(ci), () => {
 
 		expect(getCommandLib.getCommand).toHaveCallsLike();
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike();
-		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike();
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike();
 		expect(manageLocksLib.manageLocks).toHaveCallsLike();
 		expect(thrownError).toBeInstanceOf(Error);
 	});
 
-	it('should run "npm ci" when command is npm', async () => {
+	it('should run "npm auditFix" when command is npm', async () => {
 		command = 'npm';
 		const result: any[] = [];
 
-		for await (const item of ci({})) {
+		for await (const item of auditFix({})) {
 			result.push(item);
 		}
 
 		expect(getCommandLib.getCommand).toHaveCallsLike([]);
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
-		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'npm',
-			'ci',
-			[],
+			'audit',
+			['fix'],
 		]);
-		expect(manageLocksLib.manageLocks).toHaveCallsLike([
-			false,
-			'prepared option',
-		]);
-		expect(result).toEqual([
-			['drop', ['modules1']],
-			['drop', ['modules2']],
-			['npm', ['ci', []]],
-			['finish', ['command1f']],
-			['finish', ['command2f']],
-		]);
+		expect(manageLocksLib.manageLocks).toHaveCallsLike();
+		expect(result).toEqual([['npm', ['audit', ['fix']]]]);
 	});
 
 	it('should run "pnpm install --frozen-lock-file" when command is npm', async () => {
 		command = 'pnpm';
 		const result: any[] = [];
 
-		for await (const item of ci({})) {
+		for await (const item of auditFix({})) {
 			result.push(item);
 		}
 
 		expect(getCommandLib.getCommand).toHaveCallsLike([]);
 		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
-		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike(
+			['npm', 'audit', ['fix']],
 			['pnpm', 'import', []],
 			['pnpm', 'install', ['--frozen-lockfile', properHoist]],
 		);
@@ -106,8 +90,7 @@ describe(fName(ci), () => {
 			'prepared option',
 		]);
 		expect(result).toEqual([
-			['drop', ['modules1']],
-			['drop', ['modules2']],
+			['npm', ['audit', ['fix']]],
 			['pnpm', ['import', []]],
 			['pnpm', ['install', ['--frozen-lockfile', properHoist]]],
 			['finish', ['command1f']],

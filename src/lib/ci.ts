@@ -4,7 +4,7 @@ import { mountNpmCommand } from './mount-npm-command';
 import { BaseOptions, prepareOptions } from './prepare-options';
 import { hasNoPackageLock } from './has-no-package-lock';
 import { dropNodeModules } from './drop-node-modules';
-import { properHoist } from './proper-hoist';
+import { frozenInstall } from './frozen-install';
 
 interface CIOptions extends BaseOptions {}
 
@@ -15,12 +15,8 @@ export async function* ci(informedOptions: CIOptions) {
 	yield* dropNodeModules();
 	const options = prepareOptions(informedOptions);
 	const { hasCommand, command } = await getCommand();
-	if (command === 'pnpm') {
-		yield mountNpmCommand('pnpm', 'import', []);
-		yield mountNpmCommand('pnpm', 'install', [
-			'--frozen-lockfile',
-			properHoist,
-		]);
+	if (hasCommand) {
+		yield* frozenInstall(command);
 	} else {
 		yield mountNpmCommand('npm', 'ci', []);
 	}

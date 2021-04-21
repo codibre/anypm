@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
+import { audit } from './lib/audit';
 import { ci } from './lib/ci';
 import { CommandInfo } from './lib/command-info';
 import { getNpm } from './lib/get-npm';
@@ -16,6 +17,7 @@ const knownCommands = [
 	'un',
 	'ci',
 	'help',
+	'audit',
 	'replace',
 ];
 const COMMAND_POSITION = 2;
@@ -63,6 +65,15 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 		.description('Install respecting package-lock')
 		.action(runScriptFactory(ci));
 	program
+		.command('audit')
+		.description('Audit your dependencies looking for vulnerabilities')
+		.action(runScriptFactory(audit))
+		.command('fix', 'Fix found vulnerabilities')
+		.option(
+			'-f, --force',
+			'Force fix found vulnerabilities (even major versions)',
+		);
+	program
 		.command('replace')
 		.description('Replace npm command for anypm')
 		.action(replaceNpm);
@@ -72,10 +83,5 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 		.action(program.help.bind(program));
 
 	program.version(process.env.NPM_PACKAGE_VERSION!);
-	program.on('command:*', (...args: unknown[]) => {
-		console.log('error');
-		return console.log(args);
-	});
-
 	program.parse(process.argv);
 }

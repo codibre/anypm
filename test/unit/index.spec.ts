@@ -20,6 +20,7 @@ describe('index.ts', () => {
 			['install [packages...]'],
 			['uninstall <packages...>'],
 			['ci'],
+			['audit'],
 			['replace'],
 			['help', { isDefault: true }],
 		);
