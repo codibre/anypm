@@ -1,5 +1,9 @@
 
-## 0.6.1
+## 0.6.2
+* c6b6ab4 fixing test
+* a0f51ff adding nvmrc command
+## v0.6.1
+* 839b7e3 0.6.1
 * d7745c3 removing source map
 ## v0.6.0
 * 19daac1 0.6.0
