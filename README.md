@@ -52,6 +52,24 @@ To install modules resolving from package-lock (npm ci equivalent):
 anypm ci
 ```
 
+## Replace npm
+
+This is a experimental feature, but, in linux systems, you can replace the npm command by anypm in any call and it'll work seamlessly.
+First, you need to have nvm installed, then, set the default node version for nvm to your preferred version:
+
+
+```
+nvm alias default 10
+```
+
+Finally, add it to your initializing script (.zshrc, .bashrc etc...):
+
+```
+anypm nvmrc
+```
+
+This command will add a hook to the cd command and, at every folder change, it'll change the node version if there is any .nvmrc in the current folder, or to default version, if there is none. At each change, it'll also replace the npm command to anypm. Any command anypm does not support will be passed to npm.
+
 
 ## License
 
