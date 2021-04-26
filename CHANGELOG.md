@@ -1,5 +1,8 @@
 
-## 0.7.3
+## 0.7.4
+* 66741cb completing readme
+## v0.7.3
+* c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
 * 5265936 0.7.2
