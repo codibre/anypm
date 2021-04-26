@@ -70,6 +70,23 @@ anypm nvmrc
 
 This command will add a hook to the cd command and, at every folder change, it'll change the node version if there is any .nvmrc in the current folder, or to default version, if there is none. At each change, it'll also replace the npm command to anypm. Any command anypm does not support will be passed to npm.
 
+## Oh my god, pnpm is giving me an error in my project for some package
+
+Some packages with errors in the **package.json** does not work well with pnpm. Also, **pnpm** no longer supports **node 10** since version 6. If you used **anypm nvmrc** as described above and you have some project with node 10:
+
+* Do not install pnpm in your node 10, just in node 12 or above;
+* Install the version 5 in your node 10;
+
+If you have some project using a node version greater than 10 and you're getting erros during the installation:
+
+* Be like Sherlock Holmes and try to figure out which package is giving your an error (by installing one by one in another folder, for example);
+* Create a file called **anypmrc.json** in the root folder with the following content:
+```
+{
+  "command": "npm"
+}
+```
+This way, just in this project, you'll use npm, not pnpm, as your package manager under anypm
 
 ## License
 
