@@ -1,5 +1,8 @@
 
-## 0.7.6
+## 0.7.7
+* ffcb9f9 fixing replace npm
+## v0.7.6
+* aa0e7c5 0.7.6
 * c9384aa just show what you need to add to rcs
 ## v0.7.5
 * d9495c5 0.7.5
