@@ -10,15 +10,18 @@ loadnvmrc() {
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
       nvm install
-      anypm replace
+      alias realnpm=${which npm}
+      alias npm=anypm
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
       nvm use
-      anypm replace
+      alias realnpm=${which npm}
+      alias npm=anypm
     fi
   elif [ "$node_version" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
-    anypm replace
+    alias realnpm=${which npm}
+    alias npm=anypm
   fi
 }
 loadnvmrc
