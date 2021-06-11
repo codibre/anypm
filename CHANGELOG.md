@@ -1,5 +1,8 @@
 
-## 0.7.7
+## 0.7.8
+* fd87cb8 fixing replace npm
+## v0.7.7
+* 5e96d52 0.7.7
 * ffcb9f9 fixing replace npm
 ## v0.7.6
 * aa0e7c5 0.7.6
