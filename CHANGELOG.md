@@ -1,5 +1,8 @@
 
-## 0.7.5
+## 0.7.6
+* c9384aa just show what you need to add to rcs
+## v0.7.5
+* d9495c5 0.7.5
 * 718f7b1 trying to fix apply
 ## v0.7.4
 * 6295cee 0.7.4
