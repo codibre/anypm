@@ -1,17 +1,7 @@
-import { isAliasEnabled } from './is-alias-enabled';
-import { runCmd } from './run-cmd';
+import { readFileSync } from 'fs';
 
 export async function replaceNpm() {
-	if (process.platform !== 'linux') {
-		throw new Error('We can only replace npm command currently in linux!');
-	}
-	console.info('Preparing npm replacement...');
-	if (await isAliasEnabled()) {
-		await runCmd('unalias npm');
-	}
-
-	const npmPath = await runCmd('which npm');
-	await runCmd(`alias realnpm=${npmPath}`);
-	await runCmd('alias npm=anypm');
-	console.info('Npm replaced successfully!');
+	console.info('If you use Linux, add this to your .zshrc or .bashrc:');
+	console.info('-----------------------------------------------------');
+	console.info(readFileSync('apply-nvmrc.sh').toString());
 }
