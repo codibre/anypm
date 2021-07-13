@@ -18,9 +18,7 @@ export async function* install(
 ) {
 	const options = prepareOptions(informedOptions);
 	const { hasCommand, command } = await getCommand();
-	if (packages.length === 0 || options.keepLock) {
-		yield* prepareManager(hasCommand);
-	}
+	yield* prepareManager(hasCommand, packages.length === 0);
 	const hasPackages = packages.length > 0;
 	packages.unshift(properHoist);
 

@@ -41,7 +41,7 @@ describe(install.name, () => {
 		}
 
 		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
+		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value', false]);
 		expectCallsLike(getTypesLib.getTypes, [packs]);
 		expectCallsLike(
 			mountNpmCommandLib.mountNpmCommand,
@@ -73,7 +73,7 @@ describe(install.name, () => {
 		}
 
 		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value']);
+		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value', true]);
 		expectCallsLike(getTypesLib.getTypes);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
@@ -86,36 +86,6 @@ describe(install.name, () => {
 			['prepare', ['command1']],
 			['prepare2', ['command2']],
 			['myNPM', ['install', packs, 'saveDev value']],
-			['finish', ['command1f']],
-			['finish', ['command2f']],
-		]);
-	});
-
-	it('should mount commands with no preparing when keepLock is false and packs is not empty', async () => {
-		const packs = ['pack1', 'pack2', 'pack3'];
-		const options = {
-			keepLock: false,
-			saveDev: 'saveDev value' as any,
-		};
-
-		const iterable = install(packs, options);
-		const result: any[] = [];
-		for await (const item of iterable) {
-			result.push(item);
-		}
-
-		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager);
-		expectCallsLike(getTypesLib.getTypes, [packs]);
-		expectCallsLike(
-			mountNpmCommandLib.mountNpmCommand,
-			['myNPM', 'install', packs, 'saveDev value'],
-			['myNPM', 'install', typesPack, true],
-		);
-		expectCallsLike(manageLocksLib.manageLocks, ['hasPNPM value', options]);
-		expect(result).toEqual([
-			['myNPM', ['install', packs, 'saveDev value']],
-			['myNPM', ['install', typesPack, true]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
@@ -136,7 +106,7 @@ describe(install.name, () => {
 		}
 
 		expectCallsLike(getCommandLib.getCommand, []);
-		expectCallsLike(prepareManagerLib.prepareManager);
+		expectCallsLike(prepareManagerLib.prepareManager, ['hasPNPM value', false]);
 		expectCallsLike(getTypesLib.getTypes, [packs]);
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
@@ -146,6 +116,8 @@ describe(install.name, () => {
 		]);
 		expectCallsLike(manageLocksLib.manageLocks, ['hasPNPM value', options]);
 		expect(result).toEqual([
+			['prepare', ['command1']],
+			['prepare2', ['command2']],
 			['myNPM', ['install', packs, 'saveDev value']],
 			['finish', ['command1f']],
 			['finish', ['command2f']],

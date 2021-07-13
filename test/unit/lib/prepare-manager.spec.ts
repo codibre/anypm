@@ -15,7 +15,7 @@ describe(prepareManager.name, () => {
 	});
 
 	it('should yield nothing when hasPNPM is false', () => {
-		const result = Array.from(prepareManager(false));
+		const result = Array.from(prepareManager(false, true));
 
 		expectCallsLike(existsSync);
 		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike();
@@ -25,17 +25,29 @@ describe(prepareManager.name, () => {
 	it('should yield nothing when package-lock does notexist', () => {
 		existsSync.mockReturnValue(false);
 
-		const result = Array.from(prepareManager(true));
+		const result = Array.from(prepareManager(true, true));
 
 		expectCallsLike(existsSync, [packageLockPath]);
 		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
-		expect(result).toEqual([['npm', ['i']], 'drop1', 'drop2']);
+		expect(result).toEqual([
+			['npm', ['i']],
+			['pnpm', ['import']],
+			'drop1',
+			'drop2',
+		]);
 	});
 
 	it('should yield preparing commands when hasPNPM is true', () => {
+		const result = Array.from(prepareManager(true, true));
+
+		expectCallsLike(existsSync, [packageLockPath]);
+		expect(result).toEqual([['pnpm', ['import']], 'drop1', 'drop2']);
+	});
+
+	it('should yield preparing commands when hasPNPM is true, but not drop when dropModule is false', () => {
 		const result = Array.from(prepareManager(true));
 
 		expectCallsLike(existsSync, [packageLockPath]);
-		expect(result).toEqual(['drop1', 'drop2']);
+		expect(result).toEqual([['pnpm', ['import']]]);
 	});
 });
