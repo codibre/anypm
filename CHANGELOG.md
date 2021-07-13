@@ -1,5 +1,8 @@
 
-## 0.7.9
+## 0.7.10
+* 6271a1d passing global
+## v0.7.9
+* 29a0b7c 0.7.9
 * be2c47e fixing unit tests
 ## v0.7.8
 * 1ecc17e 0.7.8
