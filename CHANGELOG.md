@@ -1,5 +1,8 @@
 
-## 0.7.8
+## 0.7.9
+* be2c47e fixing unit tests
+## v0.7.8
+* 1ecc17e 0.7.8
 * fd87cb8 fixing replace npm
 ## v0.7.7
 * 5e96d52 0.7.7
