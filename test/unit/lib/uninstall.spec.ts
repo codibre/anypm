@@ -50,13 +50,14 @@ describe(uninstall.name, () => {
 			'myNPM',
 			'uninstall',
 			[...packs, ...typesPack],
+			undefined,
 		]);
 		expectCallsLike(manageLocksLib.manageLocks, [
 			'hasPNPM value',
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['myNPM', ['uninstall', [...packs, ...typesPack]]],
+			['myNPM', ['uninstall', [...packs, ...typesPack], undefined]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
@@ -80,13 +81,14 @@ describe(uninstall.name, () => {
 			'myNPM',
 			'uninstall',
 			packs,
+			undefined,
 		]);
 		expectCallsLike(manageLocksLib.manageLocks, [
 			'hasPNPM value',
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['myNPM', ['uninstall', packs]],
+			['myNPM', ['uninstall', packs, undefined]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);

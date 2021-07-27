@@ -5,7 +5,10 @@ import { manageLocks } from './manage-locks';
 import { mountNpmCommand } from './mount-npm-command';
 import { BaseOptions, prepareOptions } from './prepare-options';
 
-export interface UninstallOptions extends BaseOptions {}
+export interface UninstallOptions extends BaseOptions {
+	saveDev?: boolean;
+	global?: boolean;
+}
 
 const ARG0 = 'uninstall';
 
@@ -21,7 +24,15 @@ export async function* uninstall(
 		...Object.keys(currentPackages.devDependencies || {}),
 	]);
 	const filteredPackages = packages.filter((x) => ref.has(x));
+	if (options.global) {
+		packages.unshift('-g');
+	}
 	const types = await getTypes(filteredPackages, ref);
-	yield mountNpmCommand(command, ARG0, [...filteredPackages, ...types]);
+	yield mountNpmCommand(
+		command,
+		ARG0,
+		[...filteredPackages, ...types],
+		options.saveDev,
+	);
 	yield* manageLocks(hasPNPM, options);
 }

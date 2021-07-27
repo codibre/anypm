@@ -54,6 +54,7 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 			'-k, --keep-lock',
 			'Keep the lock file from your favorite package manager',
 		)
+		.option('-D, --save-dev', 'Install as devDependency')
 		.option('-g', '--global', 'Install globally')
 		.alias('un')
 		.description('Removes the package from your project')
