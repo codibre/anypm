@@ -1,5 +1,7 @@
 
-## 0.7.10
+## 0.7.11
+* 1873954 preparing uninstal for saveDev and global parameters
+* 1365ca8 0.7.10
 * 6271a1d passing global
 ## v0.7.9
 * 29a0b7c 0.7.9
@@ -23,6 +25,23 @@
 * c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
+## v0.7.10
+* 1365ca8 0.7.10
+* 6271a1d passing global
+* 29a0b7c 0.7.9
+* be2c47e fixing unit tests
+* 1ecc17e 0.7.8
+* fd87cb8 fixing replace npm
+* 5e96d52 0.7.7
+* ffcb9f9 fixing replace npm
+* aa0e7c5 0.7.6
+* c9384aa just show what you need to add to rcs
+* d9495c5 0.7.5
+* 718f7b1 trying to fix apply
+* 6295cee 0.7.4
+* 66741cb completing readme
+* c1445c1 0.7.3
+* 161b9c2 fixing replacement message
 * 5265936 0.7.2
 * 11fe999 updating readme
 ## v0.7.1
