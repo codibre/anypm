@@ -1,5 +1,7 @@
 
-## 0.7.13
+## 0.7.14
+* 70d3595 finally fixing execution under node 8
+* ffb130a 0.7.13
 * 24c6f06 fix: fixing command
 * ebab5f4 0.7.12
 * b90975e fix: fixing global install and uninstall, and also the run of this package under node 8 or less
@@ -29,6 +31,9 @@
 * c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
+## v0.7.13
+* ffb130a 0.7.13
+* 24c6f06 fix: fixing command
 ## v0.7.12
 * ebab5f4 0.7.12
 * b90975e fix: fixing global install and uninstall, and also the run of this package under node 8 or less
