@@ -1,5 +1,7 @@
 
-## 0.7.11
+## 0.7.12
+* b90975e fix: fixing global install and uninstall, and also the run of this package under node 8 or less
+* 8fd4361 0.7.11
 * 1873954 preparing uninstal for saveDev and global parameters
 * 1365ca8 0.7.10
 * 6271a1d passing global
@@ -25,6 +27,9 @@
 * c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
+## v0.7.11
+* 8fd4361 0.7.11
+* 1873954 preparing uninstal for saveDev and global parameters
 ## v0.7.10
 * 1365ca8 0.7.10
 * 6271a1d passing global
