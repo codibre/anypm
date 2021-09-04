@@ -32,6 +32,9 @@ export async function* install(
 		const types = await getTypes(packages);
 
 		if (types.length > 0) {
+			if (options.global) {
+				packages.unshift('-g');
+			}
 			types.unshift(properHoist);
 			yield mountNpmCommand(command, ARG0, types, true);
 		}

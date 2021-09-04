@@ -16,7 +16,7 @@ export async function runCmd(
 		});
 	} catch (err) {
 		if (defaultReturn === undefined) {
-			console.error(`Command ${cmd} failed: ${err.message}`);
+			console.error(`Command ${cmd} failed: ${(err as Error).message}`);
 			process.exit(-1);
 		} else {
 			return defaultReturn;

@@ -114,7 +114,7 @@
     "which": "^2.0.2"
   },
   "bin": {
-    "anypm": "dist/index.js",
+    "anypm": "dist/command.js",
     "apply-nvmrc": "apply-nvmrc.sh"
   }
 }

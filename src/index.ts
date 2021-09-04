@@ -42,7 +42,7 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 			'Keep the lock file from your favorite package manager',
 		)
 		.option('-D, --save-dev', 'Install as devDependency')
-		.option('-g', '--global', 'Install globally')
+		.option('-g, --global', 'Install globally')
 		.alias('i')
 		.description(
 			'Install the informed packages or follows the package.json if no package is informed using your favorite package manager',
@@ -55,7 +55,7 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 			'Keep the lock file from your favorite package manager',
 		)
 		.option('-D, --save-dev', 'Install as devDependency')
-		.option('-g', '--global', 'Install globally')
+		.option('-g, --global', 'Install globally')
 		.alias('un')
 		.description('Removes the package from your project')
 		.action(runScriptFactory(uninstall));
