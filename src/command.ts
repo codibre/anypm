@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { mountNpmCommand } from './lib/mount-npm-command';
 import { spawn } from 'child_process';
 
