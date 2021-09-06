@@ -4,7 +4,7 @@ describe('index-fix.ts', () => {
 	let cmd: Command;
 
 	afterEach(() => {
-		delete require.cache[require.resolve('../../src/index-fix')];
+		delete require.cache[require.resolve('../../src/command-fix')];
 	});
 
 	beforeEach(() => {
@@ -19,7 +19,7 @@ describe('index-fix.ts', () => {
 	it('should set available commands', () => {
 		process.argv = ['a', 'b', 'c'];
 
-		require('../../src/index-fix');
+		require('../../src/command-fix');
 
 		expect(program.option).toBeCalledTimes(1);
 		expect(cmd.action).toBeCalledTimes(1);
