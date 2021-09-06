@@ -1,5 +1,7 @@
 
-## 0.7.14
+## 0.7.15
+* 447b7af fixing npm audit fix
+* 2a50dfc 0.7.14
 * 70d3595 finally fixing execution under node 8
 * ffb130a 0.7.13
 * 24c6f06 fix: fixing command
@@ -31,6 +33,9 @@
 * c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
+## v0.7.14
+* 2a50dfc 0.7.14
+* 70d3595 finally fixing execution under node 8
 ## v0.7.13
 * ffb130a 0.7.13
 * 24c6f06 fix: fixing command
