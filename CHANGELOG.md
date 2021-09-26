@@ -1,5 +1,8 @@
 
-## 0.8.1
+## 0.8.2
+* ee0bf3f fix: fixing audit fix command
+## v0.8.1
+* 58e6e17 0.8.1
 * cb8133a fix: running pnpm import before audit
 ## v0.8.0
 * 98cc365 0.8.0
