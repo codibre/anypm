@@ -65,14 +65,14 @@ describe(fName(auditFix), () => {
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'npm',
 			'audit',
-			['fix'],
+			['--fix'],
 		]);
 		expect(manageLocksLib.manageLocks).toHaveCallsLike([
 			false,
 			{ fix: true, keepLock: false },
 		]);
 		expect(result).toEqual([
-			['npm', ['audit', ['fix']]],
+			['npm', ['audit', ['--fix']]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);

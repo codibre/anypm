@@ -20,7 +20,7 @@ export async function* audit(informedOptions: AuditOptions) {
 	yield* prepareManager(hasCommand);
 	const params: string[] = [];
 	if (options.fix) {
-		params.push('fix');
+		params.push(hasCommand ? 'fix' : '--fix');
 	}
 	if (options.force) {
 		params.push('--force');
