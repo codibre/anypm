@@ -30,7 +30,7 @@ describe(prepareManager.name, () => {
 		expectCallsLike(existsSync, [packageLockPath]);
 		expect(dropNodeModulesLib.dropNodeModules).toHaveCallsLike([]);
 		expect(result).toEqual([
-			['npm', ['i']],
+			['npm', ['i', '--ignore-scripts']],
 			['pnpm', ['import']],
 			'drop1',
 			'drop2',

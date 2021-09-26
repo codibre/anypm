@@ -10,6 +10,6 @@ export function* manageLocks(
 			yield ['rm', ['-rf', 'pnpm-lock.yaml']];
 		}
 
-		yield ['npm', ['install', '--package-lock-only']];
+		yield ['npm', ['install', '--package-lock-only', '--ignore-scripts']];
 	}
 }

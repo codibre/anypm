@@ -5,7 +5,6 @@ import * as lockLib from '../../../src/lib/has-no-package-lock';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
 import { Command } from '../../../src/lib/config';
 import { auditFix } from '../../../src/lib/audit-fix';
-import { properHoist } from '../../../src/lib/proper-hoist';
 
 describe(fName(auditFix), () => {
 	let hasNoPackageLock: jest.SpyInstance;
@@ -19,9 +18,7 @@ describe(fName(auditFix), () => {
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')
 			.mockImplementation((...[a, ...others]: any[]) => [a, others]);
-		jest
-			.spyOn(prepareOptionsLib, 'prepareOptions')
-			.mockReturnValue('prepared option' as any);
+		jest.spyOn(prepareOptionsLib, 'prepareOptions');
 		hasNoPackageLock = jest
 			.spyOn(lockLib, 'hasNoPackageLock')
 			.mockReturnValue(false);
@@ -60,39 +57,22 @@ describe(fName(auditFix), () => {
 		}
 
 		expect(getCommandLib.getCommand).toHaveCallsLike([]);
-		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
+		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([
+			{
+				fix: true,
+			},
+		]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'npm',
 			'audit',
 			['fix'],
 		]);
-		expect(manageLocksLib.manageLocks).toHaveCallsLike();
-		expect(result).toEqual([['npm', ['audit', ['fix']]]]);
-	});
-
-	it('should run "pnpm install --frozen-lock-file" when command is npm', async () => {
-		command = 'pnpm';
-		const result: any[] = [];
-
-		for await (const item of auditFix({})) {
-			result.push(item);
-		}
-
-		expect(getCommandLib.getCommand).toHaveCallsLike([]);
-		expect(prepareOptionsLib.prepareOptions).toHaveCallsLike([{}]);
-		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike(
-			['npm', 'audit', ['fix']],
-			['pnpm', 'import', []],
-			['pnpm', 'install', ['--frozen-lockfile', properHoist]],
-		);
 		expect(manageLocksLib.manageLocks).toHaveCallsLike([
-			true,
-			'prepared option',
+			false,
+			{ fix: true, keepLock: false },
 		]);
 		expect(result).toEqual([
 			['npm', ['audit', ['fix']]],
-			['pnpm', ['import', []]],
-			['pnpm', ['install', ['--frozen-lockfile', properHoist]]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);

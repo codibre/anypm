@@ -9,7 +9,7 @@ export function* prepareManager(
 	if (hasPNPM) {
 		if (hasNoPackageLock()) {
 			console.info('Generating package-lock.json...');
-			yield ['npm', ['i']];
+			yield ['npm', ['i', '--ignore-scripts']];
 		}
 		yield ['pnpm', ['import']];
 		if (dropModules) {

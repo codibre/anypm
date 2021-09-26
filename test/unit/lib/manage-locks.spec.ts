@@ -14,7 +14,9 @@ describe(manageLocks.name, () => {
 			}),
 		);
 
-		expect(result).toEqual([['npm', ['install', '--package-lock-only']]]);
+		expect(result).toEqual([
+			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
+		]);
 	});
 
 	it('should yield lock deleting and package-lock updating when hasPNPM is true but keepLock is false', () => {
@@ -26,7 +28,7 @@ describe(manageLocks.name, () => {
 
 		expect(result).toEqual([
 			['rm', ['-rf', 'pnpm-lock.yaml']],
-			['npm', ['install', '--package-lock-only']],
+			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
 		]);
 	});
 });
