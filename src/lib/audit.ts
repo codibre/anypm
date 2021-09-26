@@ -3,6 +3,7 @@ import { hasNoPackageLock } from './has-no-package-lock';
 import { getCommand } from './get-command';
 import { manageLocks } from './manage-locks';
 import { prepareOptions } from './prepare-options';
+import { prepareManager } from './prepare-manager';
 
 interface AuditOptions {
 	fix?: boolean;
@@ -16,6 +17,7 @@ export async function* audit(informedOptions: AuditOptions) {
 	}
 	const options = prepareOptions(informedOptions);
 	const { hasCommand, command } = await getCommand();
+	yield* prepareManager(hasCommand);
 	const params: string[] = [];
 	if (options.fix) {
 		params.push('fix');

@@ -52,6 +52,7 @@ describe(fName(audit), () => {
 			[],
 		]);
 		expect(result).toEqual([
+			['pnpm', ['import']],
 			['myNpmCommand', ['audit', []]],
 			['rm', ['-rf', 'pnpm-lock.yaml']],
 			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
@@ -72,6 +73,7 @@ describe(fName(audit), () => {
 			['fix'],
 		]);
 		expect(result).toEqual([
+			['pnpm', ['import']],
 			['myNpmCommand', ['audit', ['fix']]],
 			['rm', ['-rf', 'pnpm-lock.yaml']],
 			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
@@ -92,6 +94,7 @@ describe(fName(audit), () => {
 			['fix', '--force'],
 		]);
 		expect(result).toEqual([
+			['pnpm', ['import']],
 			['myNpmCommand', ['audit', ['fix', '--force']]],
 			['rm', ['-rf', 'pnpm-lock.yaml']],
 			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
