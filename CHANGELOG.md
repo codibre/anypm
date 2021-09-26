@@ -1,5 +1,8 @@
 
-## 0.8.0
+## 0.8.1
+* cb8133a fix: running pnpm import before audit
+## v0.8.0
+* 98cc365 0.8.0
 * 5280753 feat: proxying new pnp audit option
 * c120c62 0.7.15
 * 447b7af fixing npm audit fix
