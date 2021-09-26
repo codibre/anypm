@@ -1,5 +1,7 @@
 
-## 0.7.15
+## 0.8.0
+* 5280753 feat: proxying new pnp audit option
+* c120c62 0.7.15
 * 447b7af fixing npm audit fix
 * 2a50dfc 0.7.14
 * 70d3595 finally fixing execution under node 8
@@ -33,6 +35,9 @@
 * c1445c1 0.7.3
 * 161b9c2 fixing replacement message
 ## v0.7.2
+## v0.7.15
+* c120c62 0.7.15
+* 447b7af fixing npm audit fix
 ## v0.7.14
 * 2a50dfc 0.7.14
 * 70d3595 finally fixing execution under node 8
