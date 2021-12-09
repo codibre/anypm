@@ -1,5 +1,8 @@
 
-## 0.8.2
+## 0.8.3
+* 9fc9027 fix: rolling back npm audit, as pnpm audit fix is incompatible with npm
+## v0.8.2
+* 4830237 0.8.2
 * ee0bf3f fix: fixing audit fix command
 ## v0.8.1
 * 58e6e17 0.8.1
