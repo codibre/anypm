@@ -1,8 +1,9 @@
 import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as lockLib from '../../../src/lib/has-no-package-lock';
-import * as getCommandLib from '../../../src/lib/get-command';
+import * as getNpmLib from '../../../src/lib/get-npm';
 import { ci } from '../../../src/lib/ci';
 import { audit } from '../../../src/lib/audit';
+import * as installLib from '../../../src/lib/install';
 
 describe(fName(audit), () => {
 	let hasNoPackageLock: jest.SpyInstance;
@@ -11,13 +12,14 @@ describe(fName(audit), () => {
 		jest
 			.spyOn(mountNpmCommandLib, 'mountNpmCommand')
 			.mockImplementation((...[a, ...others]: any[]) => [a, others]);
-		jest.spyOn(getCommandLib, 'getCommand').mockResolvedValue({
-			hasCommand: 'has command value' as any,
-			command: 'myNpmCommand',
-		});
+		jest.spyOn(getNpmLib, 'getNpm').mockResolvedValue('myNpmCommand');
 		hasNoPackageLock = jest
 			.spyOn(lockLib, 'hasNoPackageLock')
 			.mockReturnValue(false);
+		jest.spyOn(installLib, 'install').mockReturnValue([
+			['install', ['1']],
+			['install', ['2']],
+		] as any);
 	});
 
 	it('should thrown an error when there is not package-lock', async () => {
@@ -33,7 +35,7 @@ describe(fName(audit), () => {
 			thrownError = err;
 		}
 
-		expect(getCommandLib.getCommand).toHaveCallsLike();
+		expect(getNpmLib.getNpm).toHaveCallsLike();
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike();
 		expect(thrownError).toBeInstanceOf(Error);
 	});
@@ -45,18 +47,13 @@ describe(fName(audit), () => {
 			result.push(item);
 		}
 
-		expect(getCommandLib.getCommand).toHaveCallsLike([]);
+		expect(getNpmLib.getNpm).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'myNpmCommand',
 			'audit',
 			[],
 		]);
-		expect(result).toEqual([
-			['pnpm', ['import']],
-			['myNpmCommand', ['audit', []]],
-			['rm', ['-rf', 'pnpm-lock.yaml']],
-			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
-		]);
+		expect(result).toEqual([['myNpmCommand', ['audit', []]]]);
 	});
 
 	it('should run "npm audit fix" when fix is true', async () => {
@@ -66,18 +63,13 @@ describe(fName(audit), () => {
 			result.push(item);
 		}
 
-		expect(getCommandLib.getCommand).toHaveCallsLike([]);
+		expect(getNpmLib.getNpm).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'myNpmCommand',
 			'audit',
 			['fix'],
 		]);
-		expect(result).toEqual([
-			['pnpm', ['import']],
-			['myNpmCommand', ['audit', ['fix']]],
-			['rm', ['-rf', 'pnpm-lock.yaml']],
-			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
-		]);
+		expect(result).toEqual([['myNpmCommand', ['audit', ['fix']]]]);
 	});
 
 	it('should run "npm audit fix --force" when fix and force are true', async () => {
@@ -87,17 +79,12 @@ describe(fName(audit), () => {
 			result.push(item);
 		}
 
-		expect(getCommandLib.getCommand).toHaveCallsLike([]);
+		expect(getNpmLib.getNpm).toHaveCallsLike([]);
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike([
 			'myNpmCommand',
 			'audit',
 			['fix', '--force'],
 		]);
-		expect(result).toEqual([
-			['pnpm', ['import']],
-			['myNpmCommand', ['audit', ['fix', '--force']]],
-			['rm', ['-rf', 'pnpm-lock.yaml']],
-			['npm', ['install', '--package-lock-only', '--ignore-scripts']],
-		]);
+		expect(result).toEqual([['myNpmCommand', ['audit', ['fix', '--force']]]]);
 	});
 });
