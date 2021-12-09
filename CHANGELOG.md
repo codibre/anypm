@@ -1,5 +1,8 @@
 
-## 0.8.3
+## 0.8.4
+* bd7fd1c fix: fixing vulnerabilities
+## v0.8.3
+* 2c25b3a 0.8.3
 * 9fc9027 fix: rolling back npm audit, as pnpm audit fix is incompatible with npm
 ## v0.8.2
 * 4830237 0.8.2
