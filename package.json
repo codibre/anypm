@@ -36,7 +36,6 @@
     "lint:format:fix": "prettier --write '{src,test}/**/*.ts'",
     "lint:style": "eslint '**/*.ts'",
     "lint:style:fix": "eslint '**/*.ts' --fix",
-    "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build"
   },
   "jest": {
@@ -79,11 +78,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/commit-analyzer": "^9.0.2",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/npm": "^8.0.3",
-    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/jest": "^27.0.3",
     "@types/which": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
@@ -102,7 +96,7 @@
     "ts-jest": "^27.1.1",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
-    "typedoc": "^0.22.10",
+    "typedoc": "^0.22.15",
     "typedoc-plugin-markdown": "^3.11.7",
     "typescript": "^4.5.3"
   },
