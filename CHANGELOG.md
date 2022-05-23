@@ -1,3 +1,10 @@
+## [0.8.5](https://github.com/codibre/anypm/compare/v0.8.4...v0.8.5) (2022-05-22)
+
+
+### Bug Fixes
+
+* fixing lint pipeline ([aab3067](https://github.com/codibre/anypm/commit/aab306726f0f156a1acaa57868f1843289dfdc3f))
+* fixing vulnerabilities ([78cff96](https://github.com/codibre/anypm/commit/78cff967a2eb185eabc487ae6bab9b45370cca20))
 
 ## 0.8.4
 * bd7fd1c fix: fixing vulnerabilities
