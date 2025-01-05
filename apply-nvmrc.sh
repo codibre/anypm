@@ -16,15 +16,15 @@ loadnvmrc() {
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
       nvm install
-      replacenpm()
+      replacenpm
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
       nvm use
-      replacenpm()
+      replacenpm
     fi
   elif [ "$node_version" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
-    replacenpm()
+    replacenpm
   fi
 }
 loadnvmrc
