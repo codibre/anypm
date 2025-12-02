@@ -4,7 +4,7 @@ import { manageLocks } from './manage-locks';
 import { prepareManager } from './prepare-manager';
 import { mountNpmCommand } from './mount-npm-command';
 import { BaseOptions, prepareOptions } from './prepare-options';
-import { properHoist } from './proper-hoist';
+import { pnpmArgs } from './proper-hoist';
 
 interface InstallOptions extends BaseOptions {
 	saveDev: boolean;
@@ -24,7 +24,7 @@ export async function* install(
 	if (options.global) {
 		packages.unshift('-g');
 	}
-	packages.unshift(properHoist);
+	packages.unshift(...pnpmArgs);
 
 	yield mountNpmCommand(command, ARG0, packages, options.saveDev);
 
@@ -35,7 +35,7 @@ export async function* install(
 			if (options.global) {
 				packages.unshift('-g');
 			}
-			types.unshift(properHoist);
+			types.unshift(...pnpmArgs);
 			yield mountNpmCommand(command, ARG0, types, true);
 		}
 	}

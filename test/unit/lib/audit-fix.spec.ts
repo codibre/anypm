@@ -6,7 +6,7 @@ import * as manageLocksLib from '../../../src/lib/manage-locks';
 import * as installLib from '../../../src/lib/install';
 import { Command } from '../../../src/lib/config';
 import { auditFix } from '../../../src/lib/audit-fix';
-import { properHoist } from '../../../src/lib/proper-hoist';
+import { pnpmArgs } from '../../../src/lib/proper-hoist';
 
 describe(fName(auditFix), () => {
 	let hasNoPackageLock: jest.SpyInstance;
@@ -88,7 +88,7 @@ describe(fName(auditFix), () => {
 		expect(mountNpmCommandLib.mountNpmCommand).toHaveCallsLike(
 			['npm', 'audit', ['fix']],
 			['pnpm', 'import', []],
-			['pnpm', 'install', ['--frozen-lockfile', properHoist]],
+			['pnpm', 'install', ['--frozen-lockfile', ...pnpmArgs]],
 		);
 		expect(manageLocksLib.manageLocks).toHaveCallsLike([
 			true,
@@ -97,7 +97,7 @@ describe(fName(auditFix), () => {
 		expect(result).toEqual([
 			['npm', ['audit', ['fix']]],
 			['pnpm', ['import', []]],
-			['pnpm', ['install', ['--frozen-lockfile', properHoist]]],
+			['pnpm', ['install', ['--frozen-lockfile', ...pnpmArgs]]],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);

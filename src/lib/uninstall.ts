@@ -4,6 +4,7 @@ import { getTypes } from './get-types';
 import { manageLocks } from './manage-locks';
 import { mountNpmCommand } from './mount-npm-command';
 import { BaseOptions, prepareOptions } from './prepare-options';
+import { pnpmArgs } from './proper-hoist';
 
 export interface UninstallOptions extends BaseOptions {
 	saveDev?: boolean;
@@ -28,10 +29,14 @@ export async function* uninstall(
 		packages.unshift('-g');
 	}
 	const types = await getTypes(filteredPackages, ref);
+  const args = [...filteredPackages, ...types];
+  if (hasPNPM) {
+    args.unshift(...pnpmArgs);
+  }
 	yield mountNpmCommand(
 		command,
 		ARG0,
-		[...filteredPackages, ...types],
+		args,
 		options.saveDev,
 	);
 	yield* manageLocks(hasPNPM, options);
