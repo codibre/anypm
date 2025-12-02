@@ -34,7 +34,11 @@ describe(uninstall.name, () => {
 	});
 
 	it('should mount commands with preparing when keepLock is true', async () => {
-		const packs = ['commander', 'npm-api', 'read-pkg'];
+		const packs = [
+			'commander',
+			'npm-api',
+			'read-pkg',
+		];
 		const options = 'my options' as any;
 
 		const iterable = uninstall(packs, options);
@@ -64,7 +68,11 @@ describe(uninstall.name, () => {
 	});
 
 	it('should mount commands with no type installing when there is not types to uninstall', async () => {
-		const packs = ['commander', 'npm-api', 'read-pkg'];
+		const packs = [
+			'commander',
+			'npm-api',
+			'read-pkg',
+		];
 		const options = 'my options' as any;
 		jest.spyOn(getTypesLib, 'getTypes').mockResolvedValue([]);
 

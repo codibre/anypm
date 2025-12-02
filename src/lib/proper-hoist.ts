@@ -1,1 +1,4 @@
-export const pnpmArgs = ['--shamefully-hoist', '--config.auto-install-peers=false'];
+export const pnpmArgs = [
+	'--shamefully-hoist',
+	'--config.auto-install-peers=false',
+];

@@ -29,15 +29,7 @@ export async function* uninstall(
 		packages.unshift('-g');
 	}
 	const types = await getTypes(filteredPackages, ref);
-  const args = [...filteredPackages, ...types];
-  if (hasPNPM) {
-    args.unshift(...pnpmArgs);
-  }
-	yield mountNpmCommand(
-		command,
-		ARG0,
-		args,
-		options.saveDev,
-	);
+	const args = [...filteredPackages, ...types];
+	yield mountNpmCommand(command, ARG0, args, options.saveDev);
 	yield* manageLocks(hasPNPM, options);
 }
