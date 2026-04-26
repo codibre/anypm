@@ -4,9 +4,10 @@ import * as getCommandLib from '../../../src/lib/get-command';
 import * as mountNpmCommandLib from '../../../src/lib/mount-npm-command';
 import * as getTypesLib from '../../../src/lib/get-types';
 import * as manageLocksLib from '../../../src/lib/manage-locks';
-import { sync } from 'read-pkg';
+import type { PackageJson } from 'read-pkg';
+import { join } from 'path';
 
-const project = sync();
+const project = require(join(process.cwd(), 'package.json')) as PackageJson;
 const ref = new Set([
 	...Object.keys(project.dependencies || {}),
 	...Object.keys(project.devDependencies || {}),

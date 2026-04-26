@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importsNotUsedAsValues":"remove",
-    "target": "es2021",
+    "target": "es2022",
     "skipLibCheck": true,
     "sourceMap": false,
     "outDir": "./dist",

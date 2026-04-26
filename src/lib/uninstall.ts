@@ -1,4 +1,4 @@
-import { sync } from 'read-pkg';
+import type { PackageJson } from 'read-pkg';
 import { getCommand } from './get-command';
 import { getTypes } from './get-types';
 import { manageLocks } from './manage-locks';
@@ -19,7 +19,9 @@ export async function* uninstall(
 ) {
 	const options = prepareOptions(informedOptions);
 	const { hasCommand: hasPNPM, command } = await getCommand();
-	const currentPackages = sync();
+	const currentPackages = require(
+		process.cwd() + '/package.json',
+	) as PackageJson;
 	const ref = new Set([
 		...Object.keys(currentPackages.dependencies || {}),
 		...Object.keys(currentPackages.devDependencies || {}),
