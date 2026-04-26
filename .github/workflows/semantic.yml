@@ -42,6 +42,7 @@ jobs:
           HUSKY: 0
           CI: true
       - run: |
+      
           npx semantic-release@25 --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
