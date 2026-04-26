@@ -1,3 +1,10 @@
+## [0.9.24](https://github.com/codibre/anypm/compare/v0.9.23...v0.9.24) (2026-04-26)
+
+
+### Bug Fixes
+
+* fix deploy ([684cab0](https://github.com/codibre/anypm/commit/684cab0bbcb9a4a46f48e4ed1766f86f18be4103))
+
 ## [0.9.23](https://github.com/codibre/anypm/compare/v0.9.22...v0.9.23) (2026-04-26)
 
 
