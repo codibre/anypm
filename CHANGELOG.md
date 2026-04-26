@@ -1,3 +1,22 @@
+# [0.9.0](https://github.com/codibre/anypm/compare/v0.8.4...v0.9.0) (2026-04-26)
+
+
+### Bug Fixes
+
+* Bump json5 from 2.2.0 to 2.2.3 ([490a43b](https://github.com/codibre/anypm/commit/490a43bb67a15f9de7e6c406a72bf0eb553a37c5))
+* Bump moment from 2.29.3 to 2.29.4 ([647bbb6](https://github.com/codibre/anypm/commit/647bbb6ef582544857f55d313c09a260d1882adf))
+* fixing apply-nvmrc.sh ([1f17e0b](https://github.com/codibre/anypm/commit/1f17e0b16ffdf947a5760adbbc415665420e374c))
+* fixing lint pipeline ([aab3067](https://github.com/codibre/anypm/commit/aab306726f0f156a1acaa57868f1843289dfdc3f))
+* fixing pipelines ([05c8abe](https://github.com/codibre/anypm/commit/05c8abe3f20730aabb0a5ea1f50b261e4a7b2c21))
+* fixing publishing ([17ffca6](https://github.com/codibre/anypm/commit/17ffca6ec53d9297249c16bdf1dc0ab6277c92b4))
+* fixing vulnerabilities ([78cff96](https://github.com/codibre/anypm/commit/78cff967a2eb185eabc487ae6bab9b45370cca20))
+* not installing peers ([fa91f86](https://github.com/codibre/anypm/commit/fa91f8658c032f79d918b57ccfa72c7fa6f3f2a6))
+
+
+### Features
+
+* global install, link and uninstall hoist ([66764ca](https://github.com/codibre/anypm/commit/66764ca2f00282b515dd6446fa1325f46c3ad216))
+
 ## [0.8.5](https://github.com/codibre/anypm/compare/v0.8.4...v0.8.5) (2022-05-23)
 
 
