@@ -9,11 +9,13 @@ import { replaceNpm } from './lib/replace-npm';
 import { runScriptFactory } from './lib/run-script-factory';
 import { uninstall } from './lib/uninstall';
 import { nvmrc } from './lib/nvmrc';
+import { link } from './lib/link';
 
 const knownCommands = [
 	'install',
 	'i',
 	'uninstall',
+	'link',
 	'un',
 	'ci',
 	'help',
@@ -58,6 +60,11 @@ if (!knownCommands.includes(process.argv[COMMAND_POSITION])) {
 		.alias('un')
 		.description('Removes the package from your project')
 		.action(runScriptFactory(uninstall));
+	program
+		.command('link [packages...]')
+		.option('-g, --global', 'Link globally')
+		.description('Link local packages or globally link this package')
+		.action(runScriptFactory(link));
 	program
 		.command('ci')
 		.option(

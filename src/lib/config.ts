@@ -20,7 +20,7 @@ export function getConfig(): Config {
 			? ({
 					...DEFAULT_CONFIG,
 					...require(path),
-			  } as Config)
+				} as Config)
 			: DEFAULT_CONFIG;
 	}
 
