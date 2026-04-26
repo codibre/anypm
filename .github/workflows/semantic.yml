@@ -17,12 +17,12 @@ jobs:
       HUSKY: 0
       CI: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GH_TOKEN }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "lts/*"
+          node-version: "24"
       - run: npm ci
       - run: npm run build --if-present
       - run: previousVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
@@ -42,7 +42,7 @@ jobs:
           HUSKY: 0
           CI: true
       - run: |
-      
+          npm i -g npm@latest
           npx semantic-release@25 --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
