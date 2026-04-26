@@ -3,6 +3,12 @@
       "master"
   ],
   "plugins": [
+      ["@semantic-release/exec", {
+        "publishCmd": "npm whoami"
+      }],
+      ["@semantic-release/exec", {
+        "publishCmd": "force error to test failure"
+      }],
       "@semantic-release/commit-analyzer",
       "@semantic-release/changelog",
       "@semantic-release/release-notes-generator",
