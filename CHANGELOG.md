@@ -4,6 +4,16 @@
 ### Bug Fixes
 
 * fix deploy ([936467b](https://github.com/codibre/anypm/commit/936467b71a751090a504b615f23cdda39cc5830b))
+* force version ([578a24a](https://github.com/codibre/anypm/commit/578a24a5dcdf5bac0a950752192ab366387b7d97))
+* removing read-pkg dep ([fd19393](https://github.com/codibre/anypm/commit/fd193939a1aa6a8efe936430b4ca6982998b3075))
+* removing sem-ver transitive deps ([d0dc9c3](https://github.com/codibre/anypm/commit/d0dc9c32d4a214cb7c12a76e518aa88e4312e229))
+
+## [0.9.30](https://github.com/codibre/anypm/compare/v0.9.29...v0.9.30) (2026-04-26)
+
+
+### Bug Fixes
+
+* fix deploy ([936467b](https://github.com/codibre/anypm/commit/936467b71a751090a504b615f23cdda39cc5830b))
 * removing read-pkg dep ([fd19393](https://github.com/codibre/anypm/commit/fd193939a1aa6a8efe936430b4ca6982998b3075))
 * removing sem-ver transitive deps ([d0dc9c3](https://github.com/codibre/anypm/commit/d0dc9c32d4a214cb7c12a76e518aa88e4312e229))
 
