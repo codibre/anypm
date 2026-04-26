@@ -19,12 +19,20 @@ export async function* install(
 ) {
 	const options = prepareOptions(informedOptions);
 	const { hasCommand, command } = await getCommand();
-	yield* prepareManager(hasCommand, packages.length === 0);
+	if (!options.global) {
+		yield* prepareManager(hasCommand, packages.length === 0);
+	}
 	const hasPackages = packages.length > 0;
+	if (options.global && !hasPackages) {
+		// npm install -g (no packages) installs the current package globally
+		packages.unshift('.');
+	}
+
 	if (options.global) {
 		packages.unshift('-g');
+	} else {
+		packages.unshift(...pnpmArgs);
 	}
-	packages.unshift(...pnpmArgs);
 
 	yield mountNpmCommand(command, ARG0, packages, options.saveDev);
 
@@ -33,12 +41,14 @@ export async function* install(
 
 		if (types.length > 0) {
 			if (options.global) {
-				packages.unshift('-g');
+				types.unshift('-g');
 			}
-			types.unshift(...pnpmArgs);
+			if (!options.global) {
+				types.unshift(...pnpmArgs);
+			}
 			yield mountNpmCommand(command, ARG0, types, true);
 		}
 	}
 
-	yield* manageLocks(hasCommand, options);
+	if (!options.global) yield* manageLocks(hasCommand, options);
 }

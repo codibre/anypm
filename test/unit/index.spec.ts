@@ -19,6 +19,7 @@ describe('index.ts', () => {
 			program.command,
 			['install [packages...]'],
 			['uninstall <packages...>'],
+			['link [packages...]'],
 			['ci'],
 			['audit'],
 			['replace'],

@@ -34,11 +34,7 @@ describe(uninstall.name, () => {
 	});
 
 	it('should mount commands with preparing when keepLock is true', async () => {
-		const packs = [
-			'commander',
-			'npm-api',
-			'read-pkg',
-		];
+		const packs = ['commander', 'npm-api', 'read-pkg'];
 		const options = 'my options' as any;
 
 		const iterable = uninstall(packs, options);
@@ -53,7 +49,12 @@ describe(uninstall.name, () => {
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',
-			[...packs, ...typesPack],
+			[
+				'--shamefully-hoist',
+				'--config.auto-install-peers=false',
+				...packs,
+				...typesPack,
+			],
 			undefined,
 		]);
 		expectCallsLike(manageLocksLib.manageLocks, [
@@ -61,18 +62,26 @@ describe(uninstall.name, () => {
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['myNPM', ['uninstall', [...packs, ...typesPack], undefined]],
+			[
+				'myNPM',
+				[
+					'uninstall',
+					[
+						'--shamefully-hoist',
+						'--config.auto-install-peers=false',
+						...packs,
+						...typesPack,
+					],
+					undefined,
+				],
+			],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);
 	});
 
 	it('should mount commands with no type installing when there is not types to uninstall', async () => {
-		const packs = [
-			'commander',
-			'npm-api',
-			'read-pkg',
-		];
+		const packs = ['commander', 'npm-api', 'read-pkg'];
 		const options = 'my options' as any;
 		jest.spyOn(getTypesLib, 'getTypes').mockResolvedValue([]);
 
@@ -88,7 +97,7 @@ describe(uninstall.name, () => {
 		expectCallsLike(mountNpmCommandLib.mountNpmCommand, [
 			'myNPM',
 			'uninstall',
-			packs,
+			['--shamefully-hoist', '--config.auto-install-peers=false', ...packs],
 			undefined,
 		]);
 		expectCallsLike(manageLocksLib.manageLocks, [
@@ -96,7 +105,14 @@ describe(uninstall.name, () => {
 			'my prepared options',
 		]);
 		expect(result).toEqual([
-			['myNPM', ['uninstall', packs, undefined]],
+			[
+				'myNPM',
+				[
+					'uninstall',
+					['--shamefully-hoist', '--config.auto-install-peers=false', ...packs],
+					undefined,
+				],
+			],
 			['finish', ['command1f']],
 			['finish', ['command2f']],
 		]);

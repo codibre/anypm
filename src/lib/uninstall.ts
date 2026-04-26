@@ -24,12 +24,22 @@ export async function* uninstall(
 		...Object.keys(currentPackages.dependencies || {}),
 		...Object.keys(currentPackages.devDependencies || {}),
 	]);
-	const filteredPackages = packages.filter((x) => ref.has(x));
-	if (options.global) {
-		packages.unshift('-g');
-	}
+	// For global uninstalls, don't filter by package.json (remove from global scope)
+	const filteredPackages = options.global
+		? packages
+		: packages.filter((x) => ref.has(x));
+
 	const types = await getTypes(filteredPackages, ref);
 	const args = [...filteredPackages, ...types];
+
+	if (options.global) {
+		args.unshift('-g');
+	} else {
+		// Ensure pnpm hoist/config flags are preserved during uninstall
+		args.unshift(...pnpmArgs);
+	}
+
 	yield mountNpmCommand(command, ARG0, args, options.saveDev);
-	yield* manageLocks(hasPNPM, options);
+
+	if (!options.global) yield* manageLocks(hasPNPM, options);
 }

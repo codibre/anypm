@@ -20,9 +20,5 @@ jobs:
       - name: install
         run: npm ci
       - name: 'Test'
-        uses: paambaati/codeclimate-action@v2.6.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm run test:coverage
-          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+        run:
+          npm run test:coverage
