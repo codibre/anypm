@@ -42,22 +42,6 @@ jobs:
           HUSKY: 0
           CI: true
       - run: |
-          # Run semantic-release using the locally installed packages
-          # Monkey patchs lib/trusted-publishing/oidc-context.js from @semantic-release/npm to make oidc work
-          # We need to make js code look like this:
-          # import { OFFICIAL_REGISTRY } from "../definitions/constants.js";
-          # import exchangeToken from "./token-exchange.js";
-
-          # export default async function oidcContextEstablished(registry, pkg, context) {
-          #   return OFFICIAL_REGISTRY === registry && !!(await exchangeToken(pkg, context));
-          # }
-          # to this:
-          # import { OFFICIAL_REGISTRY } from "../definitions/constants.js";
-          # export default async function oidcContextEstablished(registry, pkg, context) {
-          #   return !!(await exchangeToken(pkg, context));
-          # }
-          sed -i 's/return OFFICIAL_REGISTRY === registry &&/return/' ./node_modules/@semantic-release/npm/lib/trusted-publishing/oidc-context.js
-
           npx semantic-release@25 --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
