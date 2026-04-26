@@ -3,18 +3,10 @@
       "master"
   ],
   "plugins": [
-      ["@semantic-release/exec", {
-        "publishCmd": "npm whoami"
-      }],
-      ["@semantic-release/exec", {
-        "publishCmd": "force error to test failure"
-      }],
       "@semantic-release/commit-analyzer",
       "@semantic-release/changelog",
       "@semantic-release/release-notes-generator",
-      ["@semantic-release/exec", {
-        "publishCmd": "npm version ${nextRelease.version} --no-git-tag-version && npm publish --provenance --access public"
-      }],
+      "@semantic-release/npm",
       "@semantic-release/github",
       "@semantic-release/git"
   ],
