@@ -24,17 +24,8 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
       - run: npm ci
       - run: npm run build --if-present
-      - name: Upload coverage to Qlty
-        uses: qltysh/qlty-action/coverage@v2
-        continue-on-error: true
-        with:
-          token: ${{ secrets.CC_TEST_REPORTER_ID }}
-          files: coverage/lcov.info
       - run: previousVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
       - run: |
           # Install semantic-release and common plugins locally (no-global) so the pipeline can run reliably.
@@ -55,6 +46,7 @@ jobs:
           npx semantic-release --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true # Habilita o vínculo OIDC/Provenance
           HUSKY: 0
           CI: true
       - run: finalVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
