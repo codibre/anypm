@@ -35,15 +35,15 @@ jobs:
             @semantic-release/git \
             @semantic-release/github \
             @semantic-release/exec \
-            @semantic-release/npm@^13 \
+            @semantic-release/npm@13.1.3 \
             @semantic-release/release-notes-generator \
-            semantic-release@^25
+            semantic-release@25.0.2
         env:
           HUSKY: 0
           CI: true
       - run: |
           # Run semantic-release using the locally installed packages
-          npx semantic-release --ci
+          npx semantic-release@25.0.2 --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUSKY: 0
