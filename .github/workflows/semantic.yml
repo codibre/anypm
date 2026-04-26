@@ -7,25 +7,30 @@ on:
 
 permissions:
   id-token: write
-  contents: write
-  packages: write
+  contents: read
 
 jobs:
   semantic:
     runs-on: ubuntu-latest
     env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       HUSKY: 0
       CI: true
     steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
-
+          token: ${{ secrets.GH_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
       - run: npm ci
       - run: npm run build --if-present
+      - name: Upload coverage to Qlty
+        uses: qltysh/qlty-action/coverage@v2
+        continue-on-error: true
+        with:
+          token: ${{ secrets.CC_TEST_REPORTER_ID }}
+          files: coverage/lcov.info
       - run: previousVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
       - run: |
           # Install semantic-release and common plugins locally (no-global) so the pipeline can run reliably.
@@ -35,17 +40,18 @@ jobs:
             @semantic-release/git \
             @semantic-release/github \
             @semantic-release/exec \
-            @semantic-release/npm@13.1.5 \
+            @semantic-release/npm \
             @semantic-release/release-notes-generator \
-            semantic-release@25.0.2
+            semantic-release
         env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           HUSKY: 0
           CI: true
       - run: |
           # Run semantic-release using the locally installed packages
-          npx semantic-release@25.0.2 --ci
+          npx semantic-release@25 --ci
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           HUSKY: 0
           CI: true
       - run: finalVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
