@@ -2,8 +2,7 @@
   "name": "anypm",
   "description": "Use your favorite package manager locally and let npm be used by your CI!",
   "version": "0.9.20",
-  "access": "public",
-  "registry": "https://registry.npmjs.org/",
+  "private": false,
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },
