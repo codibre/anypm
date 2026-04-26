@@ -46,6 +46,7 @@ jobs:
           npx semantic-release --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: 00000000-0000-0000-0000-000000000000 # Placeholder para ativar o plugin
           NPM_CONFIG_PROVENANCE: true # Habilita o vínculo OIDC/Provenance
           HUSKY: 0
           CI: true
