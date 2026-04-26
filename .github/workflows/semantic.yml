@@ -21,9 +21,14 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "lts/*"
+          node-version: "24.x"
+      - name: "Debug: node/npm"
+        run: |
+          node -v
+          npm -v
+          npm config get registry
       - run: npm ci
       - run: npm run build --if-present
       - name: Upload coverage to Qlty
