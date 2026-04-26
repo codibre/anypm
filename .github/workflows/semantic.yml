@@ -25,12 +25,6 @@ jobs:
           node-version: "lts/*"
       - run: npm ci
       - run: npm run build --if-present
-      - name: Upload coverage to Qlty
-        uses: qltysh/qlty-action/coverage@v2
-        continue-on-error: true
-        with:
-          token: ${{ secrets.CC_TEST_REPORTER_ID }}
-          files: coverage/lcov.info
       - run: previousVersion=$(sed 's/.*"version"&#58; "\(.*\)".*/\1/;t;d' ./package.json)
       - run: |
           # Install semantic-release and common plugins locally (no-global) so the pipeline can run reliably.
@@ -49,6 +43,21 @@ jobs:
           CI: true
       - run: |
           # Run semantic-release using the locally installed packages
+          # Monkey patchs lib/trusted-publishing/oidc-context.js from @semantic-release/npm to make oidc work
+          # We need to make js code look like this:
+          # import { OFFICIAL_REGISTRY } from "../definitions/constants.js";
+          # import exchangeToken from "./token-exchange.js";
+
+          # export default async function oidcContextEstablished(registry, pkg, context) {
+          #   return OFFICIAL_REGISTRY === registry && !!(await exchangeToken(pkg, context));
+          # }
+          # to this:
+          # import { OFFICIAL_REGISTRY } from "../definitions/constants.js";
+          # export default async function oidcContextEstablished(registry, pkg, context) {
+          #   return !!(await exchangeToken(pkg, context));
+          # }
+          sed -i 's/return OFFICIAL_REGISTRY === registry &&/return/' ./node_modules/@semantic-release/npm/lib/trusted-publishing/oidc-context.js
+
           npx semantic-release@25 --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
