@@ -13,6 +13,10 @@
     "dist",
     "apply-nvmrc.sh"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "main": "dist/index.js",
   "scripts": {
     "doc": "npx typedoc",
