@@ -1,3 +1,10 @@
+## [0.9.31](https://github.com/codibre/anypm/compare/v0.9.30...v0.9.31) (2026-09-25)
+
+
+### Bug Fixes
+
+* force patched axios via npm overrides ([#13](https://github.com/codibre/anypm/issues/13)) ([4640bc6](https://github.com/codibre/anypm/commit/4640bc641fe83214079d04ba851f15d52567da62))
+
 ## [0.9.30](https://github.com/codibre/anypm/compare/v0.9.29...v0.9.30) (2026-04-26)
 
 
