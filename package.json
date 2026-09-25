@@ -109,5 +109,8 @@
   "bin": {
     "anypm": "dist/command.js",
     "apply-nvmrc": "apply-nvmrc.sh"
+  },
+  "overrides": {
+    "axios": "^0.33.0"
   }
 }
